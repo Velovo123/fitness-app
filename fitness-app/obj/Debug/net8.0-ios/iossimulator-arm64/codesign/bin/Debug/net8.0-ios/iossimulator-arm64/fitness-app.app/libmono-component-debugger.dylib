@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - /Users/anatolii.semenchuk/RiderProjects/fitness-app/fitness-app/bin/Debug/net8.0-ios/iossimulator-arm64/fitness-app.app/libmono-component-debugger.dylib
