@@ -146,5 +146,257 @@ namespace fitness_app.Resources.Localization {
                 return ResourceManager.GetString("LetsStartText", resourceCulture);
             }
         }
+        
+        internal static string WelcomeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeTitle", resourceCulture);
+            }
+        }
+        
+        internal static string HelloText1 {
+            get {
+                return ResourceManager.GetString("HelloText1", resourceCulture);
+            }
+        }
+        
+        internal static string HelloText2 {
+            get {
+                return ResourceManager.GetString("HelloText2", resourceCulture);
+            }
+        }
+        
+        internal static string EmailLabel {
+            get {
+                return ResourceManager.GetString("EmailLabel", resourceCulture);
+            }
+        }
+        
+        internal static string EmailPlaceholder {
+            get {
+                return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordLabel {
+            get {
+                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        internal static string LoginButton {
+            get {
+                return ResourceManager.GetString("LoginButton", resourceCulture);
+            }
+        }
+        
+        internal static string OrLoginWith {
+            get {
+                return ResourceManager.GetString("OrLoginWith", resourceCulture);
+            }
+        }
+        
+        internal static string GoogleButton {
+            get {
+                return ResourceManager.GetString("GoogleButton", resourceCulture);
+            }
+        }
+        
+        internal static string FacebookButton {
+            get {
+                return ResourceManager.GetString("FacebookButton", resourceCulture);
+            }
+        }
+        
+        internal static string NoAccountText {
+            get {
+                return ResourceManager.GetString("NoAccountText", resourceCulture);
+            }
+        }
+        
+        internal static string RegisterText {
+            get {
+                return ResourceManager.GetString("RegisterText", resourceCulture);
+            }
+        }
+        
+        internal static string CreateAccountTitle {
+            get {
+                return ResourceManager.GetString("CreateAccountTitle", resourceCulture);
+            }
+        }
+        
+        internal static string CredentialsPrompt1 {
+            get {
+                return ResourceManager.GetString("CredentialsPrompt1", resourceCulture);
+            }
+        }
+        
+        internal static string CredentialsPrompt2 {
+            get {
+                return ResourceManager.GetString("CredentialsPrompt2", resourceCulture);
+            }
+        }
+        
+        internal static string FullNameLabel {
+            get {
+                return ResourceManager.GetString("FullNameLabel", resourceCulture);
+            }
+        }
+        
+        internal static string CreateAccountButton {
+            get {
+                return ResourceManager.GetString("CreateAccountButton", resourceCulture);
+            }
+        }
+        
+        internal static string OrRegisterWith {
+            get {
+                return ResourceManager.GetString("OrRegisterWith", resourceCulture);
+            }
+        }
+        
+        internal static string AlreadyHaveAccount {
+            get {
+                return ResourceManager.GetString("AlreadyHaveAccount", resourceCulture);
+            }
+        }
+        
+        internal static string LoginText {
+            get {
+                return ResourceManager.GetString("LoginText", resourceCulture);
+            }
+        }
+        
+        internal static string PhoneLabel {
+            get {
+                return ResourceManager.GetString("PhoneLabel", resourceCulture);
+            }
+        }
+        
+        internal static string ForgotPageTitle {
+            get {
+                return ResourceManager.GetString("ForgotPageTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ForgotPageDescription1 {
+            get {
+                return ResourceManager.GetString("ForgotPageDescription1", resourceCulture);
+            }
+        }
+        
+        internal static string ForgotPageDescription2 {
+            get {
+                return ResourceManager.GetString("ForgotPageDescription2", resourceCulture);
+            }
+        }
+        
+        internal static string ResetPasswordButtonText {
+            get {
+                return ResourceManager.GetString("ResetPasswordButtonText", resourceCulture);
+            }
+        }
+        
+        internal static string VerifyAccountTitle {
+            get {
+                return ResourceManager.GetString("VerifyAccountTitle", resourceCulture);
+            }
+        }
+        
+        internal static string VerifyAccountDescription1 {
+            get {
+                return ResourceManager.GetString("VerifyAccountDescription1", resourceCulture);
+            }
+        }
+        
+        internal static string VerifyAccountDescription2 {
+            get {
+                return ResourceManager.GetString("VerifyAccountDescription2", resourceCulture);
+            }
+        }
+        
+        internal static string ResendButtonText {
+            get {
+                return ResourceManager.GetString("ResendButtonText", resourceCulture);
+            }
+        }
+        
+        internal static string VerificationFailedTitle {
+            get {
+                return ResourceManager.GetString("VerificationFailedTitle", resourceCulture);
+            }
+        }
+        
+        internal static string VerificationFailedMessage {
+            get {
+                return ResourceManager.GetString("VerificationFailedMessage", resourceCulture);
+            }
+        }
+        
+        internal static string AccountExistsTitle {
+            get {
+                return ResourceManager.GetString("AccountExistsTitle", resourceCulture);
+            }
+        }
+        
+        internal static string AccountExistsMessage {
+            get {
+                return ResourceManager.GetString("AccountExistsMessage", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        internal static string InvalidEmailOrPasswordMessage {
+            get {
+                return ResourceManager.GetString("InvalidEmailOrPasswordMessage", resourceCulture);
+            }
+        }
+        
+        internal static string EmailNotConfirmedMessage {
+            get {
+                return ResourceManager.GetString("EmailNotConfirmedMessage", resourceCulture);
+            }
+        }
+        
+        internal static string ResetEmailSentTitle {
+            get {
+                return ResourceManager.GetString("ResetEmailSentTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ResetEmailSentMessage {
+            get {
+                return ResourceManager.GetString("ResetEmailSentMessage", resourceCulture);
+            }
+        }
+        
+        internal static string ResetEmailErrorTitle {
+            get {
+                return ResourceManager.GetString("ResetEmailErrorTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ResetEmailErrorMessage {
+            get {
+                return ResourceManager.GetString("ResetEmailErrorMessage", resourceCulture);
+            }
+        }
     }
 }

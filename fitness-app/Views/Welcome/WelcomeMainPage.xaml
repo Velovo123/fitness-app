@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.Welcome.WelcomeMainPage"
+             xmlns:const="clr-namespace:fitness_app.Constants"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             Background="{StaticResource Page01BackgroundGradient}"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource NavigationPageStyle}">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0"
+                Style="{StaticResource MainPageBorderStyle}">
+            <Grid RowDefinitions="*">
+                <Image Source="{x:Static const:ImageNameConstants.Ellipse201}" 
+                       Style="{StaticResource Ellipse201ImageStyle}"/>
+                <Image Source="{x:Static const:ImageNameConstants.Vector2}" 
+                       Style="{StaticResource Vector2ImageStyle}"/>
+                <Image Source="{x:Static const:ImageNameConstants.Vector3}" 
+                       Style="{StaticResource Vector3ImageStyle}"/>
+                <Image Source="{x:Static const:ImageNameConstants.GirlDoingBiceps}" 
+                       Style="{StaticResource GirlDoingBicepsImageStyle}"/>
+            </Grid>
+        </Border>
+
+        <StackLayout Grid.Row="1"
+                     HorizontalOptions="Center">
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{x:Static resx:AppResources.ProText}"
+                              FontSize="52"
+                              FontFamily="BebasRegular"
+                              FontAttributes="Bold"
+                              TextColor="Black" />
+                       
+                        <Span Text="{x:Static resx:AppResources.FitnessText}"
+                              FontSize="52"
+                              FontFamily="BebasRegular"
+                              FontAttributes="Bold"
+                              TextColor="{StaticResource OliveGreen}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Style="{StaticResource SubtitleLabelStyle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{x:Static resx:AppResources.SubtitleLine1}" />
+                        <Span Text="{x:Static system:Environment.NewLine}" />
+                        <Span Text="{x:Static resx:AppResources.SubtitleLine2}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </StackLayout>
+        
+        <Button Grid.Row="2" 
+                Text="{x:Static resx:AppResources.LetsStartText}"
+                Command="{Binding NavigateCommand}"
+                Style="{StaticResource MainButtonStyle}"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.Welcome.ForgotPage"
+             Style="{StaticResource NavigationPageStyle}"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization">
+       
+    <Grid RowDefinitions="Auto,Auto,Auto" 
+          Style="{StaticResource MainContainerStyle}"
+          RowSpacing="60">
+        <StackLayout Grid.Row="0" 
+                     Style="{StaticResource TitleContainerStyle}">
+            <Label Text="{x:Static resx:AppResources.ForgotPageTitle}"
+                   Style="{StaticResource TitleStyle}"/>
+            <StackLayout>
+                <Label Text="{x:Static resx:AppResources.ForgotPageDescription1}"
+                       Style="{StaticResource TitleDescriptionStyle}"/>
+                <Label Text="{x:Static resx:AppResources.ForgotPageDescription2}"
+                       Style="{StaticResource TitleDescriptionStyle}"/>
+            </StackLayout>
+        </StackLayout>
+        
+        <StackLayout Grid.Row="1"
+                     Style="{StaticResource BodyContainerStyle}"
+                     VerticalOptions="Start">
+            <Label Text="{x:Static resx:AppResources.EmailLabel}"
+                   Style="{StaticResource EntryLabelStyle}"/>
+            <Grid ColumnDefinitions="*">
+                <Entry 
+                    Text="{Binding Email, Mode=TwoWay}"
+                    Placeholder="{x:Static resx:AppResources.EmailPlaceholder}"
+                    Keyboard="Email"
+                    Style="{StaticResource EntryStyle}"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"/>
+                
+                <Image Source="{FileImageSource tick}" 
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Style="{StaticResource EntryImageStyle}"
+                       IsVisible="{Binding IsEmailValid}"
+                       Grid.ColumnSpan="1"/>
+            </Grid>
+        </StackLayout>
+        <Button Grid.Row="2" Text="{x:Static resx:AppResources.ResetPasswordButtonText}" 
+                Style="{StaticResource MainGreenButtonStyle}"
+                Command="{Binding ResetPasswordCommand}"/>
+    </Grid>
+</ContentPage>

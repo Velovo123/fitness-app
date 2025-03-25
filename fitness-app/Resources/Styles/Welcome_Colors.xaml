@@ -7,4 +7,10 @@
     <Color x:Key="MossGreen">#A9C128</Color>
     <Color x:Key="GoldenYellow">#F1CA58</Color>
     <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="SlateGray">#3A4750</Color>
+    <Color x:Key="WhisperGray">#F5F5F5</Color>
+    <Color x:Key="ShadowGray">#303841</Color>
+    <Color x:Key="CloudGray">#D2D2D2</Color>
+    <Color x:Key="BoldAzure">#4267B2</Color>
+    <Color x:Key="DimGray">#696969</Color>
 </ResourceDictionary>

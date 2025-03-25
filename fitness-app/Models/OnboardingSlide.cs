@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls;
+
 namespace fitness_app.Models;
 
 public class OnboardingSlide

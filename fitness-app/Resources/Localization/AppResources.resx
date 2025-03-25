@@ -69,4 +69,130 @@
     <data name="LetsStartText" xml:space="preserve">
         <value>LET'S START</value>
     </data>
+    <data name="WelcomeTitle" xml:space="preserve">
+        <value>WELCOME TO PRO FITNESS!	</value>
+    </data>
+    <data name="HelloText1" xml:space="preserve">
+        <value>Hello there, sign in to</value>
+    </data>
+    <data name="HelloText2" xml:space="preserve">
+        <value>continue!</value>
+    </data>
+    <data name="EmailLabel" xml:space="preserve">
+        <value>Email address</value>
+    </data>
+    <data name="EmailPlaceholder" xml:space="preserve">
+        <value>johnwelles@gmail.com</value>
+    </data>
+    <data name="PasswordLabel" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="PasswordPlaceholder" xml:space="preserve">
+        <value>Enter your password</value>
+    </data>
+    <data name="ForgotPassword" xml:space="preserve">
+        <value>Forgot Password?</value>
+    </data>
+    <data name="LoginButton" xml:space="preserve">
+        <value>LOGIN</value>
+    </data>
+    <data name="OrLoginWith" xml:space="preserve">
+        <value>Or Login with</value>
+    </data>
+    <data name="GoogleButton" xml:space="preserve">
+        <value>Connect with Google</value>
+    </data>
+    <data name="FacebookButton" xml:space="preserve">
+        <value>Connect with Facebook</value>
+    </data>
+    <data name="NoAccountText" xml:space="preserve">
+        <value>Don't have an account? </value>
+    </data>
+    <data name="RegisterText" xml:space="preserve">
+        <value>Register!</value>
+    </data>
+    <data name="CreateAccountTitle" xml:space="preserve">
+        <value>CREATE ACCOUNT</value>
+    </data>
+    <data name="CredentialsPrompt1" xml:space="preserve">
+        <value>Please enter your credentials to</value>
+    </data>
+    <data name="CredentialsPrompt2" xml:space="preserve">
+        <value>proceed</value>
+    </data>
+    <data name="FullNameLabel" xml:space="preserve">
+        <value>Full Name</value>
+    </data>
+    <data name="CreateAccountButton" xml:space="preserve">
+        <value>CREATE ACCOUNT</value>
+    </data>
+    <data name="OrRegisterWith" xml:space="preserve">
+        <value>Or register with</value>
+    </data>
+    <data name="AlreadyHaveAccount" xml:space="preserve">
+        <value>Already have an account? </value>
+    </data>
+    <data name="LoginText" xml:space="preserve">
+        <value>Login!</value>
+    </data>
+    <data name="PhoneLabel" xml:space="preserve">
+        <value>Phone</value>
+    </data>
+    <data name="ForgotPageTitle" xml:space="preserve">
+        <value>FORGOT PASSWORD</value>
+    </data>
+    <data name="ForgotPageDescription1" xml:space="preserve">
+        <value>Please enter your email below to receive</value>
+    </data>
+    <data name="ForgotPageDescription2" xml:space="preserve">
+        <value>your password reset code</value>
+    </data>
+    <data name="ResetPasswordButtonText" xml:space="preserve">
+        <value>RESET PASSWORD</value>
+    </data>
+    <data name="VerifyAccountTitle" xml:space="preserve">
+    <value>VERIFY ACCOUNT</value>
+    </data>
+    <data name="VerifyAccountDescription1" xml:space="preserve">
+        <value>Verify your account by entering verification</value>
+    </data>
+    <data name="VerifyAccountDescription2" xml:space="preserve">
+        <value>code we sent to </value>
+    </data>
+    <data name="ResendButtonText" xml:space="preserve">
+        <value>Resend</value>
+    </data>
+    <data name="VerificationFailedTitle" xml:space="preserve">
+        <value>Verification Failed</value>
+    </data>
+    <data name="VerificationFailedMessage" xml:space="preserve">
+        <value>The verification code is invalid or has expired.</value>
+    </data>
+    <data name="AccountExistsTitle" xml:space="preserve">
+        <value>Account Exists</value>
+    </data>
+    <data name="AccountExistsMessage" xml:space="preserve">
+        <value>An account with this email already exists.</value>
+    </data>
+    <data name="ErrorTitle" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="InvalidEmailOrPasswordMessage" xml:space="preserve">
+        <value>Invalid email or password</value>
+    </data>
+    <data name="EmailNotConfirmedMessage" xml:space="preserve">
+        <value>Your email is not confirmed.\nPlease check your inbox for the confirmation email.</value>
+    </data>
+    <data name="ResetEmailSentTitle" xml:space="preserve">
+        <value>Reset Email Sent</value>
+    </data>
+    <data name="ResetEmailSentMessage" xml:space="preserve">
+        <value>Please check your email to reset your password.</value>
+    </data>
+    <data name="ResetEmailErrorTitle" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="ResetEmailErrorMessage" xml:space="preserve">
+        <value>There was a problem sending the reset email.</value>
+    </data>
 </root>

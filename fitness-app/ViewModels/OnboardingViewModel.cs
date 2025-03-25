@@ -1,10 +1,13 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using fitness_app.Constants;
 using fitness_app.Models;
 using fitness_app.ViewModels.Base;
 using fitness_app.Views;
+using fitness_app.Views.Welcome;
+using Microsoft.Maui.Controls;
 using MPowerKit.Navigation.Interfaces;
-using MPowerKit.Navigation.Utilities;
 using PropertyChanged;
 
 namespace fitness_app.ViewModels;
@@ -13,6 +16,7 @@ namespace fitness_app.ViewModels;
 [AddINotifyPropertyChangedInterface]
 public class OnboardingViewModel : BaseViewModel
 {
+    private readonly INavigationService _navigationService;
     public ObservableCollection<OnboardingSlide> Slides { get; set; }
     public ICommand NextCommand { get; }
     public ICommand SkipCommand { get; }
@@ -23,16 +27,18 @@ public class OnboardingViewModel : BaseViewModel
     
     public Brush CurrentBackground => Slides[CurrentIndex].Background;
 
-    public OnboardingViewModel()
+    public OnboardingViewModel(INavigationService navigationService)
     {
+        _navigationService = navigationService;
+        
         Slides = CreateSlides();
         
-        NextCommand = CreateCommand(NextCommandHandler);
-        SkipCommand = CreateCommand(SkipCommandHandler);
-        SwipeLeftCommand = CreateCommand(SwipeLeftCommandHandler);
+        NextCommand = CreateAsyncCommand(NextCommandHandler);
+        SkipCommand = CreateAsyncCommand(SkipCommandHandlerAsync);
+        SwipeLeftCommand = CreateAsyncCommand(SwipeLeftCommandHandlerAsync);
     }
 
-    private void NextCommandHandler()
+    private async Task NextCommandHandler()
     {
         if (CurrentIndex < Slides.Count - 1)
         {
@@ -40,26 +46,26 @@ public class OnboardingViewModel : BaseViewModel
         }
         else
         {
-            NavigateToLoginPage();
+            await NavigateToLoginPageAsync();
         }
     }
     
-    private void SwipeLeftCommandHandler()
+    private async Task SwipeLeftCommandHandlerAsync()
     {
         if (CurrentIndex == Slides.Count - 1)
         {
-            NavigateToLoginPage();
+            await NavigateToLoginPageAsync();
         }
     }
 
-    private static void SkipCommandHandler()
+    private async Task SkipCommandHandlerAsync()
     {
-        NavigateToLoginPage();
+        await NavigateToLoginPageAsync();
     }
     
-    private static void NavigateToLoginPage()
+    private async Task NavigateToLoginPageAsync()
     {
-        Application.Current!.MainPage = new NavigationPage(new LoginPage());
+        await _navigationService.NavigateAsync($"../{nameof(LoginPage)}", animated: false);
     }
     
     private static ObservableCollection<OnboardingSlide> CreateSlides()
@@ -69,17 +75,17 @@ public class OnboardingViewModel : BaseViewModel
             new OnboardingSlide
             {
                 SlideType = OnboardingSlideType.Welcome02,
-                Background = (Brush)Application.Current!.Resources["Page02BackgroundGradient"]
+                Background = (Brush)Application.Current!.Resources[BrushResourcesConstants.Page02BackgroundGradient],
             },
             new OnboardingSlide
             {
                 SlideType = OnboardingSlideType.Welcome03,
-                Background = (Brush)Application.Current!.Resources["Page03BackgroundGradient"]
+                Background = (Brush)Application.Current.Resources[BrushResourcesConstants.Page03BackgroundGradient],
             },
             new OnboardingSlide
             {
                 SlideType = OnboardingSlideType.Welcome04,
-                Background = (Brush)Application.Current!.Resources["Page04BackgroundGradient"]
+                Background = (Brush)Application.Current.Resources[BrushResourcesConstants.Page04BackgroundGradient],
             }
         };
     }
