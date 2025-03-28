@@ -1,20 +1,25 @@
 ﻿using CommunityToolkit.Maui;
 using fitness_app.Constants;
 #if IOS
+using fitness_app.Controls;
+using fitness_app.FitnessHandlers;
 using fitness_app.Handlers;
 #endif
 using fitness_app.Services;
 #if IOS
 #endif
 using fitness_app.ViewModels;
+using fitness_app.ViewModels.OnboardingWizard;
 using fitness_app.Views;
+using fitness_app.Views.OnboardingWizard;
 using fitness_app.Views.Welcome;
 using MauiContentButton;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Hosting;
 using MPowerKit.Navigation;
 using MPowerKit.Navigation.Utilities;
+using Plugin.SegmentedControl.Maui;
 using Supabase.Gotrue;
+using Vapolia.WheelPickers;
 
 namespace fitness_app;
 
@@ -31,17 +36,14 @@ public static class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .AddMauiContentButtonHandler()
+            .UseWheelPicker()
+            .UseSegmentedControl()
             .UseMPowerKitNavigation(mpowerBuilder =>
             {
                 mpowerBuilder.ConfigureServices(s =>
                     {
-                        s.RegisterForNavigation<WelcomeMainPage, WelcomeMainViewModel>();
-                        s.RegisterForNavigation<OnboardingPage, OnboardingViewModel>();
-                        s.RegisterForNavigation<LoginPage, LoginViewModel>();
-                        s.RegisterForNavigation<SelectFavoritePage, SelectFavoriteViewModel>();
-                        s.RegisterForNavigation<SignupPage, SignupViewModel>();
-                        s.RegisterForNavigation<ForgotPage, ForgotViewModel>();
-                        s.RegisterForNavigation<VerifyAccountPage, VerifyAccountViewModel>();
+                        s.RegisterCorePages();
+                        s.RegisterOnboardingWizardPages();
                     })
                     .OnAppStart($"NavigationPage/{nameof(WelcomeMainPage)}");
             })
@@ -58,6 +60,7 @@ public static class MauiProgram
             {
 #if IOS
                 handlers.AddHandler(typeof(CarouselView), typeof(CarouselHandler));
+                handlers.AddHandler(typeof(BorderlessEntry), typeof(CustomEntryHandler));
 #endif
             });
 
@@ -76,6 +79,27 @@ public static class MauiProgram
         builder.Services.AddTransient<IDialogService, DialogService>();
         
         return builder.Build();
+    }
+    
+    public static void RegisterCorePages(this IServiceCollection services)
+    {
+        services.RegisterForNavigation<WelcomeMainPage, WelcomeMainViewModel>();
+        services.RegisterForNavigation<OnboardingPage, OnboardingViewModel>();
+        services.RegisterForNavigation<LoginPage, LoginViewModel>();
+        services.RegisterForNavigation<SignupPage, SignupViewModel>();
+        services.RegisterForNavigation<ForgotPage, ForgotViewModel>();
+        services.RegisterForNavigation<VerifyAccountPage, VerifyAccountViewModel>();
+    }
+    public static void RegisterOnboardingWizardPages(this IServiceCollection services)
+    {
+        services.RegisterForNavigation<WeightPage, WeightViewModel>();
+        services.RegisterForNavigation<AgePage, AgeViewModel>();
+        services.RegisterForNavigation<DesiredWeightPage, DesiredWeightViewModel>();
+        services.RegisterForNavigation<FitnessLevelPage, FitnessLevelViewModel>();
+        services.RegisterForNavigation<GoalPage, GoalViewModel>();
+        services.RegisterForNavigation<SelectFavoritesPage, SelectFavoriteViewModel>();
+        services.RegisterForNavigation<HeightPage, HeightViewModel>();
+        services.RegisterForNavigation<MainPage>();
     }
     
     

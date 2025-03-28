@@ -99,6 +99,10 @@
               "target": "Package",
               "version": "[0.2.1, )"
             },
+            "Plugin.SegmentedControl.Maui": {
+              "target": "Package",
+              "version": "[1.4.16, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[4.1.0, )"
@@ -106,6 +110,10 @@
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "Vapolia.WheelPicker": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -176,6 +184,10 @@
               "target": "Package",
               "version": "[0.2.1, )"
             },
+            "Plugin.SegmentedControl.Maui": {
+              "target": "Package",
+              "version": "[1.4.16, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[4.1.0, )"
@@ -183,6 +195,10 @@
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "Vapolia.WheelPicker": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Xamarin.Google.iOS.SignIn": {
               "target": "Package",
@@ -257,6 +273,10 @@
               "target": "Package",
               "version": "[0.2.1, )"
             },
+            "Plugin.SegmentedControl.Maui": {
+              "target": "Package",
+              "version": "[1.4.16, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[4.1.0, )"
@@ -264,6 +284,10 @@
             "Supabase": {
               "target": "Package",
               "version": "[1.1.1, )"
+            },
+            "Vapolia.WheelPicker": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -290,22 +314,7 @@
         }
       },
       "runtimes": {
-        "android-arm": {
-          "#import": []
-        },
-        "android-arm64": {
-          "#import": []
-        },
-        "android-x64": {
-          "#import": []
-        },
-        "android-x86": {
-          "#import": []
-        },
-        "iossimulator-x64": {
-          "#import": []
-        },
-        "maccatalyst-arm64": {
+        "ios-arm64": {
           "#import": []
         }
       }

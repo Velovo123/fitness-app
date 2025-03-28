@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.OnboardingWizard.AgePage"
+             xmlns:views="clr-namespace:fitness_app.Views.NavBars"
+             xmlns:wp="clr-namespace:Vapolia.WheelPickers;assembly=Vapolia.WheelPicker"
+             ControlTemplate="{StaticResource TealTemplate}"
+             NavigationPage.TitleView="{views:NavBarWithSkipView}"
+             Style="{StaticResource NavigationPageStyle}">
+    
+    
+    <wp:WheelPicker HorizontalOptions="Fill" SelectedItemsIndex="20"
+                    ItemsSource="{Binding Days}" 
+                    ItemTextColor="Black"
+                    ItemTextSelectedColor="White"
+                    BackgroundColor="Transparent"
+                    SelectionLinesColor="Black"
+                    ItemTextFontFamily="BebasRegular"
+                    ItemTextFontAutoScalingEnabled="True"
+                    HeightRequest="292"
+                    ItemTextFontSize="20"
+                    WidthRequest="80"
+                    Command="{Binding ItemSelectedCommand}">
+        <wp:WheelDefinition Width="Auto" HorizontalOptions="Left" Alignment="Center" RowHeight="40"/>
+    </wp:WheelPicker>
+</ContentPage>

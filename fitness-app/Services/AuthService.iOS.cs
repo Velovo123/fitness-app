@@ -117,7 +117,7 @@ public class AuthService_iOS : IAuthService
         }
     }
 
-    public async Task<bool> VerifyUserOtpAsync(string email, string otp)
+    public async Task<Session?> VerifyUserOtpAsync(string email, string otp)
     {
         try
         {
@@ -126,23 +126,20 @@ public class AuthService_iOS : IAuthService
                 Supabase.Gotrue.Constants.EmailOtpType.Email);
 
             if (session?.AccessToken == null)
-            {
-                return false;
-            }
+                return null;
+            
+            return session;
         }
         catch (GotrueException)
         {
             //user've entered invalid token
-            return false;
+            return null;
         }
         catch (Exception)
         {
             //log 
-            return false;
+            return null;
         }
-       
-
-        return true;
     }
 
     public async Task SendMagicLink(string email)

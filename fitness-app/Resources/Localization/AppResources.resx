@@ -195,4 +195,67 @@
     <data name="ResetEmailErrorMessage" xml:space="preserve">
         <value>There was a problem sending the reset email.</value>
     </data>
+    <data name="SelectionRequired" xml:space="preserve">
+        <value>Please select your favorite category</value>
+    </data>
+    <data name="WeightRequired" xml:space="preserve">
+        <value>Incorrect or empty weight value</value>
+    </data>
+    <data name="AgeRequired" xml:space="preserve">
+        <value>Please select your age</value>
+    </data>
+    <data name="FitnessLevelTitle" xml:space="preserve">
+        <value>WHAT'S YOUR FITNESS LEVEL</value>
+    </data>
+    <data name="AgeTitle" xml:space="preserve">
+        <value>HOW OLD ARE YOU?</value>
+    </data>
+    <data name="DesiredWeightTitle" xml:space="preserve">
+        <value>WHAT'S YOUR GOAL WEIGHT</value>
+    </data>
+    <data name="GoalTitle" xml:space="preserve">
+        <value>WHAT'S YOUR GOAL</value>
+    </data>
+    <data name="HeightTitle" xml:space="preserve">
+        <value>WHAT'S YOUR HEIGHT</value>
+    </data>
+    <data name="FavoriteTitle" xml:space="preserve">
+        <value>WHAT'S YOUR FAVORITE</value>
+    </data>
+    <data name="CurrentWeightTitle" xml:space="preserve">
+        <value>HOW MUCH DO YOU WEIGHT</value>
+    </data>
+    <data name="LevelRequired" xml:space="preserve">
+        <value>Please specify your fitness level</value>
+    </data>
+    <data name="NextStepText" xml:space="preserve">
+        <value>NEXT STEPS</value>
+    </data>
+    <data name="FinishStepText" xml:space="preserve">
+        <value>FINISH STEPS</value>
+    </data>
+    <data name="BeginnerText" xml:space="preserve">
+        <value>Beginner</value>
+    </data>
+    <data name="IntermediateText" xml:space="preserve">
+        <value>Intermediate</value>
+    </data>
+    <data name="AdvancedText" xml:space="preserve">
+        <value>Advanced</value>
+    </data>
+    <data name="WeightLossText" xml:space="preserve">
+        <value>Weight loss</value>
+    </data>
+    <data name="GainMuscleText" xml:space="preserve">
+        <value>Gain muscle</value>
+    </data>
+    <data name="ImproveFitnessText" xml:space="preserve">
+        <value>Improve Fitness</value>
+    </data>
+    <data name="GoalRequired" xml:space="preserve">
+        <value>Please, select your goal</value>
+    </data>
+    <data name="OK" xml:space="preserve">
+        <value>OK</value>
+    </data>
 </root>

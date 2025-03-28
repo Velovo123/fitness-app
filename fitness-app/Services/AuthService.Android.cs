@@ -36,7 +36,7 @@ public class AuthService_Android : IAuthService
         throw new NotImplementedException();
     }
 
-    public Task<bool> VerifyUserOtpAsync(string email, string otp)
+    public Task<Session?> VerifyUserOtpAsync(string email, string otp)
     {
         throw new NotImplementedException();
     }

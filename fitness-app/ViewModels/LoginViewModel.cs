@@ -1,18 +1,12 @@
-using System;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using fitness_app.Constants;
 using fitness_app.Models.Supabase.Responses;
 using fitness_app.Resources.Localization;
 using fitness_app.Services;
 using fitness_app.ViewModels.Base;
-using fitness_app.Views;
 using fitness_app.Views.Welcome;
 using MPowerKit;
-using MPowerKit.Navigation;
-using MPowerKit.Navigation.Awares;
 using MPowerKit.Navigation.Interfaces;
 using Newtonsoft.Json;
 using PropertyChanged;
@@ -21,7 +15,7 @@ using Supabase.Gotrue.Exceptions;
 namespace fitness_app.ViewModels;
 
 [AddINotifyPropertyChangedInterface]
-public class LoginViewModel : BaseViewModel
+public class LoginViewModel : OnboardingBaseViewModel
 {
     private readonly INavigationService _navigationService;
     private readonly IAuthService _authService;
@@ -41,7 +35,8 @@ public class LoginViewModel : BaseViewModel
     
     public ICommand SignInCommand { get; }
     
-    public LoginViewModel(INavigationService navigationService,IDialogService dialogService, IAuthService authService)
+    public LoginViewModel(INavigationService navigationService,IDialogService dialogService, IAuthService authService, IUserFitnessDataService userFitnessDataService)
+        : base(userFitnessDataService, navigationService)
     {
         _navigationService = navigationService;
         _authService = authService;
@@ -60,7 +55,7 @@ public class LoginViewModel : BaseViewModel
             var session = await _authService.SignInAsync(Email, Password);
             if (session != null)
             {
-                await _navigationService.NavigateAsync(nameof(SelectFavoritePage), new NavigationParameters { { NavigationParametersConstants.Session, session } });
+                await HandleUserOnboardingAsync(session);
             }
             else
             {
@@ -79,6 +74,7 @@ public class LoginViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             // log
         }
     }
@@ -91,7 +87,7 @@ public class LoginViewModel : BaseViewModel
 
             if (session != null)
             {
-                await _navigationService.NavigateAsync(nameof(SelectFavoritePage), new NavigationParameters { { "session", session } });
+                await HandleUserOnboardingAsync(session);
             }
             else
             {

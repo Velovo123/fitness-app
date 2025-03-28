@@ -44,7 +44,7 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
         <MauiImage Include="Resources\Images\Welcome\buggy_woman.png" />
         <MauiImage Include="Resources\Images\Welcome\ellipse_205.svg" />
         <MauiImage Include="Resources\Images\Welcome\ellipse_206.svg" />
@@ -54,33 +54,35 @@
         <MauiImage Include="Resources\Images\Welcome\woman_drinking.svg" />
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'"/> 
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'" /> 
 
         <!-- Images -->
-        <MauiImage Include="Resources\Images\*"/>
+        <MauiImage Include="Resources\Images\*" />
 
         <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*"/>
+        <MauiFont Include="Resources\Fonts\*" />
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
         <PackageReference Include="DotNetEnv" Version="3.1.1" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
         <PackageReference Include="MPowerKit.Navigation" Version="1.3.1" />
         <PackageReference Include="PINView.MAUI" Version="1.0.3" />
         <PackageReference Include="Plugin.Maui.ContentButton" Version="0.2.1" />
+        <PackageReference Include="Plugin.SegmentedControl.Maui" Version="1.4.16" />
         <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
         <PackageReference Include="Fody" Version="6.9.1">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Supabase" Version="1.1.1" />
+        <PackageReference Include="Vapolia.WheelPicker" Version="5.0.2" />
     </ItemGroup>
 
     <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
@@ -115,6 +117,13 @@
         <DependentUpon>LoginPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\NavBars\NavBarWithSkipView.xaml.cs">
+        <DependentUpon>NavBarWithSkipView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Handlers\CustomEntryHandler.cs">
+        <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -141,9 +150,13 @@
       <MauiXaml Update="Views\Welcome\LoginPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Views\NavBars\NavBarWithSkipView.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Views\OnboardingWizard\Views\OnboardingCommonView.xaml" />
       <AdditionalFiles Include="Views\Welcome\Templates\Welcome02Template.xaml" />
       <AdditionalFiles Include="Views\Welcome\Templates\Welcome03Template.xaml" />
       <AdditionalFiles Include="Views\Welcome\Templates\Welcome04Template.xaml" />

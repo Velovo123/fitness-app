@@ -18,6 +18,10 @@ public class UserFitnessData : BaseModel
 
     [Column("weight_unit")] 
     public string? WeightUnit { get; set; } 
+    
+    [Column("desired_weight_unit")]
+    
+    public string? DesiredWeightUnit { get; set; }
 
     [Column("height")]
     public decimal? Height { get; set; }
@@ -27,9 +31,15 @@ public class UserFitnessData : BaseModel
 
     [Column("fitness_level")]
     public string? FitnessLevel { get; set; }
+    
+    [Column("favorite_activity")]
+    public string? FavoriteActivity { get; set; }
 
     [Column("goal")]
     public string? Goal { get; set; }
+    
+    [Column("age")]
+    public int? Age { get; set; }
 
     [Column("created_at")]
     public DateTime CreatedAt { get; set; }

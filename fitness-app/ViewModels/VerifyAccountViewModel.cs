@@ -11,7 +11,7 @@ using PropertyChanged;
 namespace fitness_app.ViewModels;
 
 [AddINotifyPropertyChangedInterface]
-public class VerifyAccountViewModel : BaseViewModel, IInitializeAware
+public class VerifyAccountViewModel : OnboardingBaseViewModel, IInitializeAware
 {
     private readonly IAuthService _authService;
     private readonly INavigationService _navigationService;
@@ -27,7 +27,8 @@ public class VerifyAccountViewModel : BaseViewModel, IInitializeAware
         Email = parameters.GetValue<string>(NavigationParametersConstants.Email);
     }
 
-    public VerifyAccountViewModel(IAuthService authService, INavigationService navigationService,IDialogService dialogService)
+    public VerifyAccountViewModel(IAuthService authService,IUserFitnessDataService userFitnessDataService, INavigationService navigationService,IDialogService dialogService)
+        : base(userFitnessDataService, navigationService)
     {
         _authService = authService;
         _navigationService = navigationService;
@@ -43,10 +44,10 @@ public class VerifyAccountViewModel : BaseViewModel, IInitializeAware
     }
     private async Task PINEntryCompletedAsync()
     {
-        bool verified = await _authService.VerifyUserOtpAsync(Email, OTP);
-        if (verified)
+        var session = await _authService.VerifyUserOtpAsync(Email, OTP);
+        if (session != null)
         {
-            await _navigationService.NavigateAsync(nameof(SelectFavoritePage));
+            await HandleUserOnboardingAsync(session);
         }
         else
         {

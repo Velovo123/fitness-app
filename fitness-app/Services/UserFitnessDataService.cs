@@ -38,7 +38,28 @@ public class UserFitnessDataService : IUserFitnessDataService
 
         return updateResponse.Models.FirstOrDefault();
     }
-    
+
+    public async Task<List<string>> RetrieveMissingPropertyNamesAsync(Session session)
+    {
+        var result = await _supabaseClient
+            .From<UserFitnessData>()
+            .Where(u => u.Id == session.User!.Id)
+            .Single();
+
+        if(result == null)
+            return new List<string>();
+        
+        var excludedProperties = new HashSet<string> { nameof(UserFitnessData.HeightUnit), nameof(UserFitnessData.WeightUnit), nameof(UserFitnessData.DesiredWeightUnit) };
+        
+        var nullProperties = result.GetType()
+            .GetProperties()
+            .Where(prop => !excludedProperties.Contains(prop.Name) && prop.GetValue(result) == null)
+            .Select(prop => prop.Name)
+            .ToList();
+
+        return nullProperties;
+    }
+
     private void MergeUserFitnessData(UserFitnessData source, UserFitnessData target)
     {
         foreach (var property in typeof(UserFitnessData).GetProperties())

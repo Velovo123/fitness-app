@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:pinview="clr-namespace:PINView.Maui;assembly=PINView.Maui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:views="clr-namespace:fitness_app.Views.NavBars">
     
     <!-- Background gradient -->
     
@@ -297,6 +298,28 @@
         <Setter Property="BackgroundColor" Value="{StaticResource OliveGreen}"/>
     </Style>
     
+    <Style x:Key="MainBlackButtonStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="318"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlack}"/>
+    </Style>
+    
+    <Style x:Key="MainWhiteButtonStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="318"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="BorderWidth" Value="0.6" />
+        <Setter Property="BorderColor" Value="{StaticResource DimGray}" />
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+    </Style>
+    
     <Style x:Key="OptionLabelStyle" TargetType="Label">
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="Margin" Value="0,16,0,12"/>
@@ -375,5 +398,12 @@
     <Style x:Key="NavigationPageStyle" TargetType="ContentPage">
         <Setter Property="NavigationPage.IconColor" Value="Black" />
         <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+    </Style>
+    
+    <Style x:Key="NavigationPageWithSkipStyle" TargetType="ContentPage">
+        <Setter Property="NavigationPage.IconColor" Value="Black" />
+        <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+        <Setter Property="NavigationPage.TitleView" Value="{views:NavBarWithSkipView}" />
+        
     </Style>
 </ResourceDictionary>

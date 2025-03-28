@@ -18,7 +18,7 @@ public interface IAuthService
     
     Task<bool> ResetPasswordForEmailAsync(string email);
 
-    Task<bool> VerifyUserOtpAsync(string email, string otp);
+    Task<Session?> VerifyUserOtpAsync(string email, string otp);
 
     Task SendMagicLink(string email);
 }

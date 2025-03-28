@@ -398,5 +398,131 @@ namespace fitness_app.Resources.Localization {
                 return ResourceManager.GetString("ResetEmailErrorMessage", resourceCulture);
             }
         }
+        
+        internal static string SelectionRequired {
+            get {
+                return ResourceManager.GetString("SelectionRequired", resourceCulture);
+            }
+        }
+        
+        internal static string WeightRequired {
+            get {
+                return ResourceManager.GetString("WeightRequired", resourceCulture);
+            }
+        }
+        
+        internal static string AgeRequired {
+            get {
+                return ResourceManager.GetString("AgeRequired", resourceCulture);
+            }
+        }
+        
+        internal static string FitnessLevelTitle {
+            get {
+                return ResourceManager.GetString("FitnessLevelTitle", resourceCulture);
+            }
+        }
+        
+        internal static string AgeTitle {
+            get {
+                return ResourceManager.GetString("AgeTitle", resourceCulture);
+            }
+        }
+        
+        internal static string DesiredWeightTitle {
+            get {
+                return ResourceManager.GetString("DesiredWeightTitle", resourceCulture);
+            }
+        }
+        
+        internal static string GoalTitle {
+            get {
+                return ResourceManager.GetString("GoalTitle", resourceCulture);
+            }
+        }
+        
+        internal static string HeightTitle {
+            get {
+                return ResourceManager.GetString("HeightTitle", resourceCulture);
+            }
+        }
+        
+        internal static string FavoriteTitle {
+            get {
+                return ResourceManager.GetString("FavoriteTitle", resourceCulture);
+            }
+        }
+        
+        internal static string CurrentWeightTitle {
+            get {
+                return ResourceManager.GetString("CurrentWeightTitle", resourceCulture);
+            }
+        }
+        
+        internal static string LevelRequired {
+            get {
+                return ResourceManager.GetString("LevelRequired", resourceCulture);
+            }
+        }
+        
+        internal static string NextStepText {
+            get {
+                return ResourceManager.GetString("NextStepText", resourceCulture);
+            }
+        }
+        
+        internal static string FinishStepText {
+            get {
+                return ResourceManager.GetString("FinishStepText", resourceCulture);
+            }
+        }
+        
+        internal static string BeginnerText {
+            get {
+                return ResourceManager.GetString("BeginnerText", resourceCulture);
+            }
+        }
+        
+        internal static string IntermediateText {
+            get {
+                return ResourceManager.GetString("IntermediateText", resourceCulture);
+            }
+        }
+        
+        internal static string AdvancedText {
+            get {
+                return ResourceManager.GetString("AdvancedText", resourceCulture);
+            }
+        }
+        
+        internal static string WeightLossText {
+            get {
+                return ResourceManager.GetString("WeightLossText", resourceCulture);
+            }
+        }
+        
+        internal static string GainMuscleText {
+            get {
+                return ResourceManager.GetString("GainMuscleText", resourceCulture);
+            }
+        }
+        
+        internal static string ImproveFitnessText {
+            get {
+                return ResourceManager.GetString("ImproveFitnessText", resourceCulture);
+            }
+        }
+        
+        internal static string GoalRequired {
+            get {
+                return ResourceManager.GetString("GoalRequired", resourceCulture);
+            }
+        }
+        
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
     }
 }
