@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Title_PerfectBody" xml:space="preserve">
+        <value>PERFECT BODY</value>
+    </data>
+    <data name="Subtitle_Doing" xml:space="preserve">
+        <value>DOING </value>
+    </data>
+    <data name="Subtitle_Crossfit" xml:space="preserve">
+        <value>CROSSFIT</value>
+    </data>
+    <data name="Title_Exercises" xml:space="preserve">
+        <value>EXERCICES</value>
+    </data>
+    <data name="Nav_Skip" xml:space="preserve">
+        <value>SKIP</value>
+    </data>
+    <data name="Nav_Next" xml:space="preserve">
+        <value>NEXT</value>
+    </data>
+    <data name="Title_ShotStrong" xml:space="preserve">
+        <value>SHOT STRONG</value>
+    </data>
+    <data name="Title_Timeless" xml:space="preserve">
+        <value>TIMELESS</value>
+    </data>
+    <data name="Subtitle_WomanTraining" xml:space="preserve">
+        <value>WOMAN TRAINING</value>
+    </data>
+    <data name="Title_HealthyMuscular" xml:space="preserve">
+        <value>HEALTHY MUSCULAR</value>
+    </data>
+    <data name="Title_Sportswoman" xml:space="preserve">
+        <value>SPORTSWOMAN</value>
+    </data>
+    <data name="Subtitle_Standing" xml:space="preserve">
+        <value>STANDING</value>
+    </data>
+    <data name="ProText" xml:space="preserve">
+        <value>PRO </value>
+    </data>
+    <data name="FitnessText" xml:space="preserve">
+        <value>FITNESS</value>
+    </data>
+    <data name="SubtitleLine1" xml:space="preserve">
+        <value>We train your body to be</value>
+    </data>
+    <data name="SubtitleLine2" xml:space="preserve">
+        <value>great and fit.</value>
+    </data>
+    <data name="LetsStartText" xml:space="preserve">
+        <value>LET'S START</value>
+    </data>
+    <data name="WelcomeTitle" xml:space="preserve">
+        <value>WELCOME TO PRO FITNESS!	</value>
+    </data>
+    <data name="HelloText1" xml:space="preserve">
+        <value>Hello there, sign in to</value>
+    </data>
+    <data name="HelloText2" xml:space="preserve">
+        <value>continue!</value>
+    </data>
+    <data name="EmailLabel" xml:space="preserve">
+        <value>Email address</value>
+    </data>
+    <data name="EmailPlaceholder" xml:space="preserve">
+        <value>johnwelles@gmail.com</value>
+    </data>
+    <data name="PasswordLabel" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="PasswordPlaceholder" xml:space="preserve">
+        <value>Enter your password</value>
+    </data>
+    <data name="ForgotPassword" xml:space="preserve">
+        <value>Forgot Password?</value>
+    </data>
+    <data name="LoginButton" xml:space="preserve">
+        <value>LOGIN</value>
+    </data>
+    <data name="OrLoginWith" xml:space="preserve">
+        <value>Or Login with</value>
+    </data>
+    <data name="GoogleButton" xml:space="preserve">
+        <value>Connect with Google</value>
+    </data>
+    <data name="FacebookButton" xml:space="preserve">
+        <value>Connect with Facebook</value>
+    </data>
+    <data name="NoAccountText" xml:space="preserve">
+        <value>Don't have an account? </value>
+    </data>
+    <data name="RegisterText" xml:space="preserve">
+        <value>Register!</value>
+    </data>
+    <data name="CreateAccountTitle" xml:space="preserve">
+        <value>CREATE ACCOUNT</value>
+    </data>
+    <data name="CredentialsPrompt1" xml:space="preserve">
+        <value>Please enter your credentials to</value>
+    </data>
+    <data name="CredentialsPrompt2" xml:space="preserve">
+        <value>proceed</value>
+    </data>
+    <data name="FullNameLabel" xml:space="preserve">
+        <value>Full Name</value>
+    </data>
+    <data name="CreateAccountButton" xml:space="preserve">
+        <value>CREATE ACCOUNT</value>
+    </data>
+    <data name="OrRegisterWith" xml:space="preserve">
+        <value>Or register with</value>
+    </data>
+    <data name="AlreadyHaveAccount" xml:space="preserve">
+        <value>Already have an account? </value>
+    </data>
+    <data name="LoginText" xml:space="preserve">
+        <value>Login!</value>
+    </data>
+    <data name="PhoneLabel" xml:space="preserve">
+        <value>Phone</value>
+    </data>
+    <data name="ForgotPageTitle" xml:space="preserve">
+        <value>FORGOT PASSWORD</value>
+    </data>
+    <data name="ForgotPageDescription1" xml:space="preserve">
+        <value>Please enter your email below to receive</value>
+    </data>
+    <data name="ForgotPageDescription2" xml:space="preserve">
+        <value>your password reset code</value>
+    </data>
+    <data name="ResetPasswordButtonText" xml:space="preserve">
+        <value>RESET PASSWORD</value>
+    </data>
+    <data name="VerifyAccountTitle" xml:space="preserve">
+    <value>VERIFY ACCOUNT</value>
+    </data>
+    <data name="VerifyAccountDescription1" xml:space="preserve">
+        <value>Verify your account by entering verification</value>
+    </data>
+    <data name="VerifyAccountDescription2" xml:space="preserve">
+        <value>code we sent to </value>
+    </data>
+    <data name="ResendButtonText" xml:space="preserve">
+        <value>Resend</value>
+    </data>
+    <data name="VerificationFailedTitle" xml:space="preserve">
+        <value>Verification Failed</value>
+    </data>
+    <data name="VerificationFailedMessage" xml:space="preserve">
+        <value>The verification code is invalid or has expired.</value>
+    </data>
+    <data name="AccountExistsTitle" xml:space="preserve">
+        <value>Account Exists</value>
+    </data>
+    <data name="AccountExistsMessage" xml:space="preserve">
+        <value>An account with this email already exists.</value>
+    </data>
+    <data name="ErrorTitle" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="InvalidEmailOrPasswordMessage" xml:space="preserve">
+        <value>Invalid email or password</value>
+    </data>
+    <data name="EmailNotConfirmedMessage" xml:space="preserve">
+        <value>Your email is not confirmed.\nPlease check your inbox for the confirmation email.</value>
+    </data>
+    <data name="ResetEmailSentTitle" xml:space="preserve">
+        <value>Reset Email Sent</value>
+    </data>
+    <data name="ResetEmailSentMessage" xml:space="preserve">
+        <value>Please check your email to reset your password.</value>
+    </data>
+    <data name="ResetEmailErrorTitle" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="ResetEmailErrorMessage" xml:space="preserve">
+        <value>There was a problem sending the reset email.</value>
+    </data>
+    <data name="SelectionRequired" xml:space="preserve">
+        <value>Please select your favorite category</value>
+    </data>
+    <data name="WeightRequired" xml:space="preserve">
+        <value>Incorrect or empty weight value</value>
+    </data>
+    <data name="AgeRequired" xml:space="preserve">
+        <value>Please select your age</value>
+    </data>
+    <data name="FitnessLevelTitle" xml:space="preserve">
+        <value>WHAT'S YOUR FITNESS LEVEL</value>
+    </data>
+    <data name="AgeTitle" xml:space="preserve">
+        <value>HOW OLD ARE YOU?</value>
+    </data>
+    <data name="DesiredWeightTitle" xml:space="preserve">
+        <value>WHAT'S YOUR GOAL WEIGHT</value>
+    </data>
+    <data name="GoalTitle" xml:space="preserve">
+        <value>WHAT'S YOUR GOAL</value>
+    </data>
+    <data name="HeightTitle" xml:space="preserve">
+        <value>WHAT'S YOUR HEIGHT</value>
+    </data>
+    <data name="FavoriteTitle" xml:space="preserve">
+        <value>WHAT'S YOUR FAVORITE</value>
+    </data>
+    <data name="CurrentWeightTitle" xml:space="preserve">
+        <value>HOW MUCH DO YOU WEIGHT</value>
+    </data>
+    <data name="LevelRequired" xml:space="preserve">
+        <value>Please specify your fitness level</value>
+    </data>
+    <data name="NextStepText" xml:space="preserve">
+        <value>NEXT STEPS</value>
+    </data>
+    <data name="FinishStepText" xml:space="preserve">
+        <value>FINISH STEPS</value>
+    </data>
+    <data name="BeginnerText" xml:space="preserve">
+        <value>Beginner</value>
+    </data>
+    <data name="IntermediateText" xml:space="preserve">
+        <value>Intermediate</value>
+    </data>
+    <data name="AdvancedText" xml:space="preserve">
+        <value>Advanced</value>
+    </data>
+    <data name="WeightLossText" xml:space="preserve">
+        <value>Weight loss</value>
+    </data>
+    <data name="GainMuscleText" xml:space="preserve">
+        <value>Gain muscle</value>
+    </data>
+    <data name="ImproveFitnessText" xml:space="preserve">
+        <value>Improve Fitness</value>
+    </data>
+    <data name="GoalRequired" xml:space="preserve">
+        <value>Please, select your goal</value>
+    </data>
+    <data name="OK" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="Dashboard" xml:space="preserve">
+        <value>Dashboard</value>
+    </data>
+    <data name="Plans" xml:space="preserve">
+        <value>Plans</value>
+    </data>
+    <data name="Training" xml:space="preserve">
+        <value>Training</value>
+    </data>
+    <data name="Categories" xml:space="preserve">
+        <value>Categories</value>
+    </data>
+    <data name="MyAccount" xml:space="preserve">
+        <value>My Account</value>
+    </data>
+    <data name="MyFavorites" xml:space="preserve">
+        <value>My Favorites</value>
+    </data>
+    <data name="AppSettings" xml:space="preserve">
+        <value>App Settings</value>
+    </data>
+    <data name="ContactSupport" xml:space="preserve">
+        <value>Contact Support</value>
+    </data>
+    <data name="SignOut" xml:space="preserve">
+        <value>Sign Out</value>
+    </data>
+    <data name="Category" xml:space="preserve">
+        <value>CATEGORY</value>
+    </data>
+    <data name="SeeAll" xml:space="preserve">
+        <value>See all</value>
+    </data>
+    <data name="SelectYourGoal" xml:space="preserve">
+        <value>SELECT YOUR GOAL</value>
+    </data>
+    <data name="StartExercise" xml:space="preserve">
+        <value>Start Exercise</value>
+    </data>
+    <data name="BattleStretchTraining" xml:space="preserve">
+        <value>BATTLE STRETCH TRAINING</value>
+    </data>
+    <data name="FitYoungWomanDoing" xml:space="preserve">
+        <value>FIT YOUNG WOMAN DOING</value>
+    </data>
+    <data name="SearchPlaceholder" xml:space="preserve">
+        <value>Search</value>
+    </data>
+    <data name="HelloTextMainPage" xml:space="preserve">
+        <value>Hello, </value>
+    </data>
+    <data name="GoodMorningText" xml:space="preserve">
+        <value>Good Morning</value>
+    </data>
+    <data name="Step" xml:space="preserve">
+        <value>Step </value>
+    </data>
+    <data name="Of" xml:space="preserve">
+        <value> of </value>
+    </data>
+</root>

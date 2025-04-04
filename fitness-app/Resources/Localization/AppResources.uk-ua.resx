@@ -1,0 +1,32 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Title_PerfectBody" xml:space="preserve">
+        <value>ІДЕАЛЬНЕ ТІЛО</value>
+    </data>
+    <data name="Subtitle_Crossfit" xml:space="preserve">
+        <value>КРОСФІТ</value>
+    </data>
+    <data name="Subtitle_Doing" xml:space="preserve">
+        <value>ВИКОНУЮЧИ</value>
+    </data>
+    <data name="Title_Exercises" xml:space="preserve">
+        <value>ВПРАВИ</value>
+    </data>
+    <data name="Nav_Skip" xml:space="preserve">
+        <value>ПРОПУСТИТИ</value>
+    </data>
+    <data name="Nav_Next" xml:space="preserve">
+        <value>ДАЛІ</value>
+    </data>
+</root>

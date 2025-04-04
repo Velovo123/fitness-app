@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.Welcome.SignupPage"
+             xmlns:converters="clr-namespace:fitness_app.Converters"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             Style="{StaticResource NavigationPageStyle}">
+       
+       <ContentPage.Resources>
+              <ResourceDictionary>
+                     <converters:BoolToImageConverter x:Key="BoolToImageConverter"/>
+              </ResourceDictionary>
+       </ContentPage.Resources>
+       
+       <ScrollView>
+              <Grid RowDefinitions="Auto, Auto, *" 
+                    Style="{StaticResource MainContainerStyle}">
+               <StackLayout Grid.Row="0" 
+                            Style="{StaticResource TitleContainerStyle}">
+                   <Label Text="{x:Static resx:AppResources.CreateAccountTitle}"
+                          Style="{StaticResource TitleStyle}"/>
+                   <StackLayout>
+                       <Label Text="{x:Static resx:AppResources.CredentialsPrompt1}"
+                              Style="{StaticResource TitleDescriptionStyle}"/>
+                       <Label Text="{x:Static resx:AppResources.CredentialsPrompt2}"
+                              Style="{StaticResource TitleDescriptionStyle}"/>
+                   </StackLayout>
+               </StackLayout>
+        
+               <StackLayout Grid.Row="1"
+                            Style="{StaticResource BodyContainerStyle}">
+                   <Label Text="{x:Static resx:AppResources.FullNameLabel}"
+                          Style="{StaticResource EntryLabelStyle}"/>
+                   <Grid ColumnDefinitions="*">
+                       <Entry 
+                           Text="{Binding FullName, Mode=TwoWay}"
+                           Keyboard="Text"
+                           Style="{StaticResource EntryStyle}"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"/>
+                       
+                      <Image Source="{FileImageSource tick}" 
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             Style="{StaticResource EntryImageStyle}"
+                             IsVisible="True"
+                             Grid.ColumnSpan="1"/>
+                   </Grid>
+                       
+                   <Label Text="{x:Static resx:AppResources.PhoneLabel}"
+                          Style="{StaticResource EntryLabelStyle}"/>
+                       <Entry Keyboard="Telephone"
+                              Style="{StaticResource EntryStyle}"
+                              Text="{Binding Phone, Mode=TwoWay}"/>
+                   
+                   <Label Text="{x:Static resx:AppResources.EmailLabel}"
+                          Style="{StaticResource EntryLabelStyle}"/>
+                   <Grid ColumnDefinitions="*">
+                          <Entry 
+                                 Text="{Binding Email, Mode=TwoWay}"
+                                 Placeholder="{x:Static resx:AppResources.EmailPlaceholder}"
+                                 Keyboard="Email"
+                                 Style="{StaticResource EntryStyle}"
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2"/>
+                       
+                          <Image Source="{FileImageSource tick}" 
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 Style="{StaticResource EntryImageStyle}"
+                                 IsVisible="{Binding IsEmailValid}"
+                                 Grid.ColumnSpan="1"/>
+                   </Grid>
+                   
+                   <Label Text="{x:Static resx:AppResources.PasswordLabel}"
+                          Style="{StaticResource EntryLabelStyle}"/>
+                   <Grid ColumnDefinitions="*">
+                          <Entry Placeholder="{x:Static resx:AppResources.PasswordPlaceholder}"
+                                 IsPassword="{Binding IsPasswordHidden}"
+                                 Style="{StaticResource EntryStyle}"
+                                 Text="{Binding Password, Mode=TwoWay}"
+                                 Grid.Row="0"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2"/>
+                       
+                          <Image Source="{Binding IsPasswordHidden, Converter={StaticResource BoolToImageConverter}}" 
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 Style="{StaticResource EntryImageStyle}"
+                                 Grid.ColumnSpan="1">
+                                 <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TogglePasswordVisibilityCommand}" />
+                                 </Image.GestureRecognizers>
+                          </Image>
+                   </Grid>
+               </StackLayout>
+              
+              <Grid Grid.Row="2">
+                     <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                     </Grid.RowDefinitions>
+            
+                     <StackLayout Grid.Row="0" Spacing="12">
+                            <Button Text="{x:Static resx:AppResources.CreateAccountButton}" 
+                                    Style="{StaticResource MainGreenButtonStyle}"
+                                    Command="{Binding SignUpCommand}"/>
+                            <Label Text="{x:Static resx:AppResources.OrRegisterWith}" 
+                                   Style="{StaticResource OptionLabelStyle}"/>
+                            <Button
+                                   Text="{x:Static resx:AppResources.GoogleButton}"
+                                   ImageSource="{FileImageSource google_icon}"
+                                   Style="{StaticResource GoogleButtonStyle}"/>
+                            <Button 
+                                   Text="{x:Static resx:AppResources.FacebookButton}" 
+                                   ImageSource="{FileImageSource facebook_icon}"
+                                   Style="{StaticResource FacebookButtonStyle}"/>
+                     </StackLayout>
+            
+                     <StackLayout Grid.Row="2" 
+                                  Style="{StaticResource BottomContainerStyle}">
+                            <Label Text="{x:Static resx:AppResources.AlreadyHaveAccount}"
+                                   Style="{StaticResource BottomLabelStyle}"/>
+                            <Button Text="{x:Static resx:AppResources.LoginText}"
+                                    Style="{StaticResource BottomButtonBold}"
+                                    Command="{Binding NavigateBackCommand}"/>
+                     </StackLayout>
+              </Grid>
+    </Grid>
+       </ScrollView>
+</ContentPage>

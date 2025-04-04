@@ -1,0 +1,19 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:fitness_app"
+             xmlns:conv="clr-namespace:fitness_app.Converters"
+             x:Class="fitness_app.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <conv:EnumToStringConverter x:Key="EnumToStringConverter" />
+            <conv:EquilityConverter x:Key="EqualityConverter"/>
+            <conv:SelectedIndexEventArgsConverter x:Key="EventArgsConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Welcome_Colors.xaml" />
+                <ResourceDictionary Source="Views/OnboardingWizard/Views/OnboardingCommonView.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Welcome_Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

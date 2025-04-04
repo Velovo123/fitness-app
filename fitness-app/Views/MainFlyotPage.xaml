@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:constant="clr-namespace:fitness_app.Constants"
+            x:Class="fitness_app.Views.MainFlyoutPage"
+            xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+            NavigationPage.HasNavigationBar="False">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="Menu">
+            <Grid RowDefinitions="Auto,Auto,*,Auto"
+                  Style="{StaticResource MainFlyoutGridRowSpacing}">
+                <Button ImageSource="{x:Static constant:ImageNameConstants.CloseBtn}"
+                        Command="{Binding CloseFlyoutCommand}"
+                        Style="{StaticResource MainFlyoutCloseButtonStyle}"
+                        Grid.Row="0"/>
+                <VerticalStackLayout Grid.Row="1" 
+                                     Style="{StaticResource MainFlyoutVerticalStackLayoutRowSpacing}">
+                    <Image Source="{Binding User.Photo}"
+                           Style="{StaticResource MainFlyoutUserImageStyle}"/>
+                    <Label Text="{Binding User.FullName}"
+                           Style="{StaticResource MainFlyoutUserLabelStyle}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="2">
+                    <Button Text="{x:Static resx:AppResources.Dashboard}" 
+                            ImageSource="{x:Static constant:ImageNameConstants.Bell}"
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.Plans}" 
+                            ImageSource="{x:Static constant:ImageNameConstants.Plans}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.Training}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.GantelTraining}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.Categories}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.Heart}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.MyAccount}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.MyAccount}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.MyFavorites}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.Favorites}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.AppSettings}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.Settings}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                    <Button Text="{x:Static resx:AppResources.ContactSupport}" 
+                            Style="{StaticResource MainFlyoutNavigationButtonStyle}"
+                            ImageSource="{x:Static constant:ImageNameConstants.Support}"/>
+                    <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
+                </VerticalStackLayout>
+                
+                <Button Grid.Row="3" 
+                        ImageSource="{x:Static constant:ImageNameConstants.Signout}"
+                        Text="{x:Static resx:AppResources.SignOut}"
+                        Style="{StaticResource MainFlyoutSignOutButtonStyle}"/>
+            </Grid>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+</FlyoutPage>
