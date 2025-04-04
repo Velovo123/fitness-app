@@ -125,10 +125,7 @@ public class AuthService_iOS : IAuthService
                 otp,
                 Supabase.Gotrue.Constants.EmailOtpType.Email);
 
-            if (session?.AccessToken == null)
-                return null;
-            
-            return session;
+            return IsValidSession(session) ? session : null;
         }
         catch (GotrueException)
         {
@@ -140,6 +137,11 @@ public class AuthService_iOS : IAuthService
             //log 
             return null;
         }
+    }
+    
+    private bool IsValidSession(Session? session)
+    {
+        return session?.AccessToken != null;
     }
 
     public async Task SendMagicLink(string email)

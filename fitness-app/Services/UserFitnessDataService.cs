@@ -9,6 +9,13 @@ public class UserFitnessDataService : IUserFitnessDataService
 {
     private readonly Client _supabaseClient;
 
+    private static readonly HashSet<string> ExcludedProperties = new HashSet<string>
+    {
+        nameof(UserFitnessData.HeightUnit),
+        nameof(UserFitnessData.WeightUnit),
+        nameof(UserFitnessData.DesiredWeightUnit)
+    };
+
     public UserFitnessDataService(Client supabaseClient)
     {
         _supabaseClient = supabaseClient;
@@ -16,49 +23,32 @@ public class UserFitnessDataService : IUserFitnessDataService
     
     public async Task<UserFitnessData?> UpdateUserFitnessDataAsync(Session session, UserFitnessData data)
     {
-        if (string.IsNullOrEmpty(session.User?.Id))
-            throw new InvalidOperationException("No valid user in session.");
-    
-        data.Id = session.User.Id;
-        var currentRecordResponse = await _supabaseClient
-            .From<UserFitnessData>()
-            .Where(u => u.Id == data.Id)
-            .Single();
-
-        if (currentRecordResponse == null)
+        var userId = GetUserId(session);
+        data.Id = userId;
+        
+        var currentRecord = await GetUserFitnessDataAsync(session);
+        if (currentRecord == null)
         {
             return null;
         }
 
-        MergeUserFitnessData(data, currentRecordResponse);
+        MergeUserFitnessData(data, currentRecord);
 
         var updateResponse = await _supabaseClient
             .From<UserFitnessData>()
-            .Filter("id", Supabase.Postgrest.Constants.Operator.Equals, session.User.Id)
-            .Update(currentRecordResponse);
+            .Filter("id", Supabase.Postgrest.Constants.Operator.Equals, userId)
+            .Update(currentRecord);
 
         return updateResponse.Models.FirstOrDefault();
     }
 
     public async Task<List<string>> RetrieveMissingPropertyNamesAsync(Session session)
     {
-        var result = await _supabaseClient
-            .From<UserFitnessData>()
-            .Where(u => u.Id == session.User!.Id)
-            .Single();
-
-        if(result == null)
+        var result = await GetUserFitnessDataAsync(session);
+        if (result == null)
             return new List<string>();
-        
-        var excludedProperties = new HashSet<string> { nameof(UserFitnessData.HeightUnit), nameof(UserFitnessData.WeightUnit), nameof(UserFitnessData.DesiredWeightUnit) };
-        
-        var nullProperties = result.GetType()
-            .GetProperties()
-            .Where(prop => !excludedProperties.Contains(prop.Name) && prop.GetValue(result) == null)
-            .Select(prop => prop.Name)
-            .ToList();
 
-        return nullProperties;
+        return GetNullProperties(result);
     }
 
     public async Task<Models.User> GetUserFromSessionAsync(Session session)
@@ -98,15 +88,13 @@ public class UserFitnessDataService : IUserFitnessDataService
         };
     }
 
-
     public async Task<UserFitnessData?> GetUserFitnessDataAsync(Session session)
     {
-        var result = await _supabaseClient
+        var userId = GetUserId(session);
+        return await _supabaseClient
             .From<UserFitnessData>()
-            .Where(u => u.Id == session.User!.Id)
+            .Where(u => u.Id == userId)
             .Single();
-        
-        return result;
     }
 
     private void MergeUserFitnessData(UserFitnessData source, UserFitnessData target)
@@ -127,5 +115,20 @@ public class UserFitnessDataService : IUserFitnessDataService
             }
         }
     }
-   
+    
+    private string GetUserId(Session session)
+    {
+        if (session.User == null || string.IsNullOrEmpty(session.User.Id))
+            throw new InvalidOperationException("No valid user in session.");
+        return session.User.Id;
+    }
+    
+    private List<string> GetNullProperties(UserFitnessData data)
+    {
+        return data.GetType()
+                   .GetProperties()
+                   .Where(prop => !ExcludedProperties.Contains(prop.Name) && prop.GetValue(data) == null)
+                   .Select(prop => prop.Name)
+                   .ToList();
+    }
 }
