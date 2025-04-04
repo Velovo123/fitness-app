@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:const="clr-namespace:fitness_app.Constants"
+                    xmlns:resx="clr-namespace:fitness_app.Resources.Localization">
+    <DataTemplate x:Key="Welcome04Template">
+        <Grid RowDefinitions="Auto,*">
+    
+        <Border Grid.Row="0"
+                Style="{StaticResource CircleBorderStyle}">
+            <AbsoluteLayout Style="{StaticResource ImageContainerStyle}">
+                <Image Source="{x:Static const:ImageNameConstants.BuggyWoman}"  
+                       Style="{StaticResource BuggyWoman}"/>
+            </AbsoluteLayout>
+        </Border>
+        
+        <StackLayout Grid.Row="1">
+            <Label Text="{x:Static resx:AppResources.Title_HealthyMuscular}"
+                   Style="{StaticResource LargeTitleLabelStyle}"/>
+            <Label HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{x:Static resx:AppResources.Title_Sportswoman}"
+                              FontSize="40"
+                              FontFamily="BebasRegular"
+                              FontAttributes="Bold"
+                              TextColor="{StaticResource OliveGreen}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{x:Static resx:AppResources.Subtitle_Standing}"
+                   Style="{StaticResource LargeTitleLabelStyle}"/>
+        </StackLayout>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

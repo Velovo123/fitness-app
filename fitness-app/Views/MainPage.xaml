@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constant="clr-namespace:fitness_app.Constants"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:views="clr-namespace:fitness_app.Views.Views"
+             x:Class="fitness_app.Views.MainPage">
+    
+    <Grid RowDefinitions="Auto,*,Auto" 
+          IgnoreSafeArea="True" 
+          Style="{StaticResource MainPageGridRowSpacing}">
+        <Border Style="{StaticResource MainPageHeader}">
+            <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutRowSpacing}">
+                <Grid ColumnDefinitions="Auto,Auto,*,Auto" 
+                      Style="{StaticResource MainPageGridColumnSpacing}">
+                    <Button Grid.Column="0"
+                            ImageSource="{x:Static constant:ImageNameConstants.Menu}"
+                            Command="{Binding OpenFlyoutCommand}"
+                            Style="{StaticResource MainPageMenuButtonStyle}"/>
+                    <Image Grid.Column="1"
+                           Source="{Binding User.Photo}"
+                           Style="{StaticResource MainImageUserPhotoStyle}"/>
+                    <Button Grid.Column="3"
+                            ImageSource="{x:Static constant:ImageNameConstants.Bell}"
+                            Style="{StaticResource MainPageMenuButtonStyle}"/>
+                </Grid>
+                <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutRowSpacing1}">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static resx:AppResources.HelloTextMainPage}"
+                                      Style="{StaticResource MainPageHelloSpanStyle}"/>
+                                <Span Text="{x:Static resx:AppResources.GoodMorningText}" 
+                                      Style="{StaticResource MainPageHelloSpanStyle}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="{Binding User.FullName}" 
+                           Style="{StaticResource MainPageUserNameLabelStyle}"/>
+                </VerticalStackLayout>
+                <SearchBar Placeholder="{x:Static resx:AppResources.SearchPlaceholder}"
+                           x:Name="MainSearchBar"
+                           SearchButtonPressed="MainSearchBar_OnSearchButtonPressed"
+                           Style="{StaticResource MainPageSearchBarStyle}"/>
+            </VerticalStackLayout>
+        </Border>
+        <Grid Grid.Row="1" RowDefinitions="Auto,Auto" 
+              Style="{StaticResource MainPageGridContainerStyle}">
+            <Border Grid.Row="0"
+                    Style="{StaticResource MainPageBorderContainerStyle}">
+                <Grid>
+                    <Border Style="{StaticResource MainPageBorderContainerStyle1}">
+                        <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutContainerStyle}">
+                            <Label Style="{StaticResource MainPageLabelStyle}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static resx:AppResources.FitYoungWomanDoing}" 
+                                              Style="{StaticResource MainPageBannerSpanStyle}" />
+                                        <Span Text="{x:Static system:Environment.NewLine}" />
+                                        <Span Text="{x:Static resx:AppResources.BattleStretchTraining}" 
+                                              Style="{StaticResource MainPageBannerSpanStyle}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Style="{StaticResource MainPageStartExerciesButtonStyle}"
+                                    Text="{x:Static resx:AppResources.StartExercise}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                   
+                    <Image Source="{x:Static constant:ImageNameConstants.Dumbbells}"
+                           Style="{StaticResource MainPageDumbbellsPhotoStyle}"/>
+                    <Image Source="{x:Static constant:ImageNameConstants.GirlStretching}"
+                           Style="{StaticResource MainPageGirlStretchingPhotoStyle}"/>
+                </Grid>
+            </Border>
+            <VerticalStackLayout Grid.Row="1" Spacing="16">
+                <Label Text="{x:Static resx:AppResources.SelectYourGoal}"
+                       Style="{StaticResource MainPageGoalLabelStyle}"/>
+               <views:ToggleButtonsView />
+                
+               <Grid ColumnDefinitions="Auto,*,Auto">
+                   <Label Text="{x:Static resx:AppResources.Category}"
+                          Grid.Column="0"
+                          Style="{StaticResource MainPageCategoryLabelStyle}"/>
+                   <Button Text="{x:Static resx:AppResources.SeeAll}" 
+                           Grid.Column="2"
+                           Style="{StaticResource MainPageSeeAllButtonStyle}"/>
+               </Grid>
+                
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

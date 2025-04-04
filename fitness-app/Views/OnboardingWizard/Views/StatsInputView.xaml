@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:s="http://plugin.segmentedControl.maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:constant="clr-namespace:fitness_app.Constants"
+             xmlns:controls="clr-namespace:fitness_app.Controls"
+             x:Class="fitness_app.Views.OnboardingWizard.Views.StatsInputView"
+             x:Name="This">
+    <VerticalStackLayout VerticalOptions="Fill" Spacing="32" Margin="0,80">
+        
+        <s:SegmentedControl x:Name="UnitSegmentControl"
+                            WidthRequest="120" 
+                            HeightRequest="44"
+                            TintColor="White"
+                            SelectedTextColor="Black"
+                            SelectedSegment="{Binding SelectedIndex, Mode=TwoWay}">
+            <s:SegmentedControlOption Text="{Binding OptionOneText, Source={x:Reference This}}" />
+            <s:SegmentedControlOption Text="{Binding OptionTwoText, Source={x:Reference This}}" />
+            
+            <s:SegmentedControl.Behaviors>
+                <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                Command="{Binding SegmentedControlChangedCommand, Source={x:Reference This}}"
+                                                CommandParameter="{Binding SelectedSegment, Source={x:Reference UnitSegmentControl}}"/>
+            </s:SegmentedControl.Behaviors>
+        </s:SegmentedControl>
+        
+        <Border Stroke="{StaticResource CloudGray}"
+                StrokeShape="RoundRectangle 8"
+                Padding="10"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center">
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="2">
+                
+                <controls:BorderlessEntry x:Name="BorderlessEntry"
+                                          Keyboard="Numeric"
+                                          FontSize="20"
+                                          MaxLength="3"
+                                          Text="{Binding CurrentStat, Mode=TwoWay}"
+                                          TextColor="Black"
+                                          HorizontalTextAlignment="End">
+                    <controls:BorderlessEntry.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="Loaded"
+                                                        Command="{Binding FocusEntryCommand}"
+                                                        CommandParameter="{x:Reference BorderlessEntry}"/>
+                    </controls:BorderlessEntry.Behaviors>
+                </controls:BorderlessEntry>
+                
+                <Label VerticalOptions="Center"
+                       FontSize="20"
+                       Margin="0"
+                       Padding="0"
+                       TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static constant:DisplayConstants.Separator}" />
+                            <Span Text="{Binding SelectedUnit}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

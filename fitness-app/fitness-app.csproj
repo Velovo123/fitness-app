@@ -1,0 +1,179 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+        <RuntimeIdentifier>iossimulator-x64</RuntimeIdentifier>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+        <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+        <!-- Note for MacCatalyst:
+        The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+        When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+        The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+        either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+        <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+        <OutputType>Exe</OutputType>
+        <RootNamespace>fitness_app</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        
+        
+        <!-- Display name -->
+        <ApplicationTitle>fitness-app</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.fitnessapp</ApplicationId>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiImage Include="Resources\Images\Welcome\buggy_woman.png" />
+        <MauiImage Include="Resources\Images\Welcome\ellipse_205.svg" />
+        <MauiImage Include="Resources\Images\Welcome\ellipse_206.svg" />
+        <MauiImage Include="Resources\Images\Welcome\figure_5045.svg" />
+        <MauiImage Include="Resources\Images\Welcome\mkm.svg" />
+        <MauiImage Include="Resources\Images\Welcome\woman_with_dumbbells.svg" />
+        <MauiImage Include="Resources\Images\Welcome\woman_drinking.svg" />
+
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'" /> 
+
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="DotNetEnv" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+        <PackageReference Include="MPowerKit.Navigation" Version="1.3.1" />
+        <PackageReference Include="PINView.MAUI" Version="1.0.3" />
+        <PackageReference Include="Plugin.Maui.ContentButton" Version="0.2.1" />
+        <PackageReference Include="Plugin.SegmentedControl.Maui" Version="1.4.16" />
+        <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+        <PackageReference Include="Fody" Version="6.9.1">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Supabase" Version="1.1.1" />
+        <PackageReference Include="Vapolia.WheelPicker" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+        <PackageReference Include="Xamarin.Google.iOS.SignIn" Version="5.0.2.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Localization\AppResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>AppResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Platforms\iOS\CarouselHandler.cs">
+        <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
+      </Compile>
+      <Compile Update="Platforms\iOS\CarouselHandler.ios.cs">
+        <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
+      </Compile>
+      <Compile Update="Views\Welcome\OnboardingPage.xaml.cs">
+        <DependentUpon>OnboardingPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Welcome\SignupPage.xaml.cs">
+        <DependentUpon>SignupPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Welcome\WelcomeMainPage.xaml.cs">
+        <DependentUpon>MainPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Welcome\LoginPage.xaml.cs">
+        <DependentUpon>LoginPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\NavBars\NavBarWithSkipView.xaml.cs">
+        <DependentUpon>NavBarWithSkipView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Handlers\CustomEntryHandler.cs">
+        <ExcludeFromCurrentConfiguration>true</ExcludeFromCurrentConfiguration>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Localization\AppResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+        <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Views\Welcome\OnboardingPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\Welcome\SignupPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\Welcome\WelcomeMainPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\Welcome\LoginPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Views\NavBars\NavBarWithSkipView.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\OnboardingWizard\Views\OnboardingCommonView.xaml" />
+      <AdditionalFiles Include="Views\Welcome\Templates\Welcome02Template.xaml" />
+      <AdditionalFiles Include="Views\Welcome\Templates\Welcome03Template.xaml" />
+      <AdditionalFiles Include="Views\Welcome\Templates\Welcome04Template.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="System.Private.CoreLib">
+        <HintPath>..\..\..\Library\Developer\CoreSimulator\Devices\58B9A779-E52F-4D15-A126-B356CD7DD751\data\Containers\Bundle\Application\1E9CFCA3-FE7D-43E3-BEFA-EED853E3220B\fitness-app.app\System.Private.CoreLib.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove=".env" />
+      <BundleResource Include=".env">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </BundleResource>
+    </ItemGroup>
+
+</Project>
