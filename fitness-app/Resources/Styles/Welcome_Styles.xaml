@@ -2,6 +2,7 @@
                     xmlns:pinview="clr-namespace:PINView.Maui;assembly=PINView.Maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:controls="clr-namespace:fitness_app.Controls"
+                    xmlns:s="http://plugin.segmentedControl.maui"
                     xmlns:views="clr-namespace:fitness_app.Views.NavBars">
     
     <LinearGradientBrush x:Key="Page01BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
@@ -622,5 +623,101 @@
         <Setter Property="WidthRequest" Value="100"/>
         <Setter Property="FontFamily" Value="BebasRegular"/>
         <Setter Property="SelectedIndex" Value="20"/>
+    </Style>
+    
+    <Style x:Key="ToggleButtonsViewHorizontalStackLayoutContainer" TargetType="HorizontalStackLayout">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Spacing" Value="12"/>
+    </Style>
+    
+    <Style x:Key="ToggleButtonsViewScrollViewStyle" TargetType="ScrollView">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Never"/>
+    </Style>
+    
+    <Style x:Key="OnboardingCommonViewGridStyle" TargetType="Grid">
+        <Setter Property="Margin" Value="16, 0"/>
+    </Style>
+    
+    <Style x:Key="OnboardingCommonViewLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="DMSansMedium"/>
+    </Style>
+    
+    <Style x:Key="OnboardingCommonViewLabelTitleTextStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+    
+    <Style x:Key="OnboardingCommonViewButtonStyle" BasedOn="{StaticResource MainGreenButtonStyle}" TargetType="Button">
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="OnboardingCommonViewVerticalStackLayoutStyle" TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="8"/>
+    </Style>
+    
+    <Style x:Key="SelectableCategoryViewVerticalStackLayoutStyle" TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="2"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+    </Style>
+    
+    <Style x:Key="SelectableCategoryViewImageStyle" TargetType="Image">
+        <Setter Property="Aspect" Value="AspectFill"/>
+    </Style>
+    
+    <Style x:Key="SelectableCategoryViewLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="DMSansMedium"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="SelectableCategoryViewFrameStyle" TargetType="Frame">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HeightRequest" Value="112"/>
+        <Setter Property="WidthRequestRequest" Value="112"/>
+        <Setter Property="CornerRadius" Value="56"/>
+        <Setter Property="IsClippedToBounds" Value="True"/>
+    </Style>
+    
+    <Style x:Key="StatsInputViewBorderStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource CloudGray}"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 8"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="StatsInputViewVerticalStackLayoutStyle" TargetType="VerticalStackLayout">
+        <Setter Property="VerticalOptions" Value="Fill"/>
+        <Setter Property="Spacing" Value="32"/>
+        <Setter Property="Margin" Value="0,80"/>
+    </Style>
+    
+    <Style x:Key="StatsInputViewSegmentedControlStyle" TargetType="s:SegmentedControl">
+        <Setter Property="WidthRequest" Value="120"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="TintColor" Value="White"/>
+        <Setter Property="SelectedTextColor" Value="Black"/>
+    </Style>
+    
+    <Style x:Key="StatsInputViewBorderlessEntryStyle" TargetType="controls:BorderlessEntry">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Keyboard" Value="Numeric"/>
+        <Setter Property="MaxLength" Value="3"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+    </Style>
+    
+    <Style x:Key="StatsInputViewLabelStyle" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="TextColor" Value="Black"/>
     </Style>
 </ResourceDictionary>

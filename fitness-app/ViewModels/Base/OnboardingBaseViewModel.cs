@@ -35,20 +35,25 @@ public class OnboardingBaseViewModel : BaseViewModel
         }
         else
         {
-            var user = await _userFitnessDataService.GetUserFromSessionAsync(session);
-            
-            if (user == null)
-            {
-                return;
-            }
-            
-            
-            var result = await _navigationService.NavigateAsync($"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}", new NavigationParameters {{"user", user}});
-            
-            if (!result.Success)
-            {
-                // Log
-            }
+            await NavigateToMainPageAsync(session);
+        }
+    }
+    
+    private async Task NavigateToMainPageAsync(Session session)
+    {
+        var user = await _userFitnessDataService.GetUserFromSessionAsync(session);
+        if (user == null)
+        {
+            return;
+        }
+
+        var result = await _navigationService.NavigateAsync(
+            $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}",
+            new NavigationParameters { { "user", user } });
+
+        if (!result.Success)
+        {
+            // Log 
         }
     }
     

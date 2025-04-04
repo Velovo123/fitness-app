@@ -29,16 +29,27 @@ public class MainViewModel : BaseViewModel, IInitializeAware
         OpenFlyoutCommand = CreateCommand(OpenFlyout);
         CloseFlyoutCommand = CreateCommand(CloseFlyout);
         CategoryCommand = CreateCommand<CategoryItem>(ChangeCategoryAsync);
-        
-        Items = new ObservableCollection<ToggleButtonItem>
+
+        Items = InitializeToggleButtonItems();
+        CategoryItems = InitializeCategoryItems();
+
+        ItemTappedCommand = new Command<ToggleButtonItem>(OnItemTapped);
+    }
+
+    private ObservableCollection<ToggleButtonItem> InitializeToggleButtonItems()
+    {
+        return new ObservableCollection<ToggleButtonItem>
         {
             new ToggleButtonItem { Text = "Lose Weight" },
             new ToggleButtonItem { Text = "Gain Weight" },
             new ToggleButtonItem { Text = "Body Building" },
             new ToggleButtonItem { Text = "Healthy Lifestyle" }
         };
-        
-        CategoryItems = new ObservableCollection<CategoryItem>
+    }
+
+    private ObservableCollection<CategoryItem> InitializeCategoryItems()
+    {
+        return new ObservableCollection<CategoryItem>
         {
             new CategoryItem { Title="Yoga", ImageSource=ImageNameConstants.YogaCategory, IsSelected=false },
             new CategoryItem { Title="Gym", ImageSource=ImageNameConstants.GymCategory, IsSelected=false },
@@ -46,9 +57,8 @@ public class MainViewModel : BaseViewModel, IInitializeAware
             new CategoryItem { Title="Stretch", ImageSource=ImageNameConstants.StretchCategory, IsSelected=false },
             new CategoryItem { Title="Full Body", ImageSource=ImageNameConstants.FullbodyCategory, IsSelected=false },
         };
-        
-        ItemTappedCommand = new Command<ToggleButtonItem>(OnItemTapped);
     }
+
     
     public void Initialize(INavigationParameters parameters)
     {

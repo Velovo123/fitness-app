@@ -64,20 +64,36 @@ public class LoginViewModel : OnboardingBaseViewModel
         }
         catch (GotrueException ex)
         {
-            var errorResponse = JsonConvert.DeserializeObject<SupabaseError>(ex.Message);
-            if (errorResponse != null && errorResponse.ErrorCode.Equals(AuthErrorConstants.EmailNotConfirmed, StringComparison.OrdinalIgnoreCase))
-            {
-                await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.EmailNotConfirmedMessage);
-                await _authService.SendMagicLink(Email);
-                await _navigationService.NavigateAsync(nameof(VerifyAccountPage), new NavigationParameters { { NavigationParametersConstants.Email, Email } });
-            }
+            await HandleGotrueExceptionAsync(ex);
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
+            // Log 
+        }
+    }
+
+    private async Task HandleGotrueExceptionAsync(GotrueException ex)
+    {
+        var errorResponse = JsonConvert.DeserializeObject<SupabaseError>(ex.Message);
+        if (errorResponse != null && errorResponse.ErrorCode.Equals(AuthErrorConstants.EmailNotConfirmed, StringComparison.OrdinalIgnoreCase))
+        {
+            await HandleEmailNotConfirmedAsync();
+        }
+        else
+        {
             // log
         }
     }
+
+    private async Task HandleEmailNotConfirmedAsync()
+    {
+        await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.EmailNotConfirmedMessage);
+        await _authService.SendMagicLink(Email);
+        await _navigationService.NavigateAsync(nameof(VerifyAccountPage), 
+            new NavigationParameters { { NavigationParametersConstants.Email, Email } });
+    }
+
 
     private async Task SignInWithGoogleAsync()
     {
@@ -89,13 +105,10 @@ public class LoginViewModel : OnboardingBaseViewModel
             {
                 await HandleUserOnboardingAsync(session);
             }
-            else
-            {
-            }
         }
         catch (Exception)
         {
-            // Handle exceptions (e.g., log error, display an alert).
+            // log
         }
     }
     private async Task NavigateToRegisterAsync()

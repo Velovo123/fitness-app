@@ -7,13 +7,10 @@
              xmlns:controls="clr-namespace:fitness_app.Controls"
              x:Class="fitness_app.Views.OnboardingWizard.Views.StatsInputView"
              x:Name="This">
-    <VerticalStackLayout VerticalOptions="Fill" Spacing="32" Margin="0,80">
+    <VerticalStackLayout Style="{StaticResource StatsInputViewVerticalStackLayoutStyle}">
         
         <s:SegmentedControl x:Name="UnitSegmentControl"
-                            WidthRequest="120" 
-                            HeightRequest="44"
-                            TintColor="White"
-                            SelectedTextColor="Black"
+                            Style="{StaticResource StatsInputViewSegmentedControlStyle}"
                             SelectedSegment="{Binding SelectedIndex, Mode=TwoWay}">
             <s:SegmentedControlOption Text="{Binding OptionOneText, Source={x:Reference This}}" />
             <s:SegmentedControlOption Text="{Binding OptionTwoText, Source={x:Reference This}}" />
@@ -25,20 +22,12 @@
             </s:SegmentedControl.Behaviors>
         </s:SegmentedControl>
         
-        <Border Stroke="{StaticResource CloudGray}"
-                StrokeShape="RoundRectangle 8"
-                Padding="10"
-                HorizontalOptions="Fill"
-                VerticalOptions="Center">
+        <Border Style="{StaticResource StatsInputViewBorderStyle}">
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="2">
                 
                 <controls:BorderlessEntry x:Name="BorderlessEntry"
-                                          Keyboard="Numeric"
-                                          FontSize="20"
-                                          MaxLength="3"
                                           Text="{Binding CurrentStat, Mode=TwoWay}"
-                                          TextColor="Black"
-                                          HorizontalTextAlignment="End">
+                                          Style="{StaticResource StatsInputViewBorderlessEntryStyle}">
                     <controls:BorderlessEntry.Behaviors>
                         <toolkit:EventToCommandBehavior EventName="Loaded"
                                                         Command="{Binding FocusEntryCommand}"
@@ -46,11 +35,7 @@
                     </controls:BorderlessEntry.Behaviors>
                 </controls:BorderlessEntry>
                 
-                <Label VerticalOptions="Center"
-                       FontSize="20"
-                       Margin="0"
-                       Padding="0"
-                       TextColor="Black">
+                <Label Style="{StaticResource StatsInputViewLabelStyle}">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="{x:Static constant:DisplayConstants.Separator}" />

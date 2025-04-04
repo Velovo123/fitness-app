@@ -4,11 +4,10 @@
     xmlns:models="clr-namespace:fitness_app.Models"
     x:Class="fitness_app.Views.Views.ToggleButtonsView"
     x:Name="This">
-    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+    <ScrollView  Style="{StaticResource ToggleButtonsViewScrollViewStyle}">
         <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Items}"
                                BindableLayout.EmptyView="No Items Found"
-                               Padding="0"
-                               Spacing="12">
+                               Style="{StaticResource ToggleButtonsViewHorizontalStackLayoutContainer}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:ToggleButtonItem">
                     <Button Text="{Binding Text}"

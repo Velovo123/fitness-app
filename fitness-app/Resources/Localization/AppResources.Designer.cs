@@ -632,5 +632,17 @@ namespace fitness_app.Resources.Localization {
                 return ResourceManager.GetString("GoodMorningText", resourceCulture);
             }
         }
+        
+        internal static string Step {
+            get {
+                return ResourceManager.GetString("Step", resourceCulture);
+            }
+        }
+        
+        internal static string Of {
+            get {
+                return ResourceManager.GetString("Of", resourceCulture);
+            }
+        }
     }
 }

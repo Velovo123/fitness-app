@@ -5,6 +5,7 @@ using fitness_app.Resources.Localization;
 using fitness_app.Resources.Localization;
 using fitness_app.Services;
 using fitness_app.Views;
+using MPowerKit;
 using MPowerKit.Navigation.Awares;
 using MPowerKit.Navigation.Interfaces;
 using PropertyChanged;
@@ -39,7 +40,7 @@ namespace fitness_app.ViewModels.Base
             _navigationService = navigationService;
             _dialogService = dialogService;
             _userFitnessDataService = userFitnessDataService;
-            SkipCommand = CreateAsyncCommand(OnSkipAsync);
+            SkipCommand = CreateAsyncCommand<bool>(NavigateToNextPageAsync);
             FocusEntryCommand = CreateCommand<BorderlessEntry>(FocusEntry);
         }
 
@@ -49,32 +50,35 @@ namespace fitness_app.ViewModels.Base
             Session = onboardingParams.Session;
             RemainingPages = onboardingParams.RemainingPages;
 
+            SetInitialPageCount();
+            UpdateStepsAndButtonText();
+
+            await Task.CompletedTask;
+        }
+        
+        private void SetInitialPageCount()
+        {
             if (OnboardingNavigationParameters.InitalPageCount == 0)
             {
                 OnboardingNavigationParameters.InitalPageCount = RemainingPages.Count + 1;
             }
-
             TotalSteps = OnboardingNavigationParameters.InitalPageCount;
-            CurrentStep = TotalSteps - RemainingPages.Count;
-            
-            if (CurrentStep == TotalSteps)
-            {
-                ButtonText = AppResources.FinishStepText;
-            }
-            else
-            {
-                ButtonText = AppResources.NextStepText;
-            }
+        }
 
-            await Task.CompletedTask;
+        private void UpdateStepsAndButtonText()
+        {
+            CurrentStep = TotalSteps - RemainingPages.Count;
+            ButtonText = (CurrentStep == TotalSteps)
+                ? AppResources.FinishStepText
+                : AppResources.NextStepText;
         }
         
         private void FocusEntry(BorderlessEntry entry)
         {
             entry.Focus();
         }
-
-        private async Task OnSkipAsync()
+        
+        protected async Task NavigateToNextPageAsync(bool animated = false)
         {
             var newRemaining = RemainingPages.Skip(1).ToList();
             var navParams = new OnboardingNavigationParameters
@@ -82,44 +86,42 @@ namespace fitness_app.ViewModels.Base
                 Session = Session,
                 RemainingPages = newRemaining
             };
-
+        
             if (RemainingPages.Any())
             {
-                var nextPage = RemainingPages.First();
-                var result = await _navigationService.NavigateAsync(nextPage, navParams.ToNavigationParameters(), animated: false);
-                if (!result.Success)
-                {
-                    // Log
-                }
+                await NavigateToNextOnboardingPageAsync(navParams);
             }
             else
             {
-                await _navigationService.NavigateAsync($"TabbedPage?createTab={nameof(MainFlyoutPage)}");
+                await NavigateToMainPageAsync(Session);
             }
         }
         
-        protected async Task NavigateToNextPageAsync(bool animated)
+        private async Task NavigateToNextOnboardingPageAsync(OnboardingNavigationParameters navParams)
         {
-            var newRemaining = RemainingPages.Skip(1).ToList();
-            var navParams = new OnboardingNavigationParameters
+            var nextPage = RemainingPages.First();
+            var result = await _navigationService.NavigateAsync(nextPage, navParams.ToNavigationParameters(), animated: false);
+            if (!result.Success)
             {
-                Session = Session,
-                RemainingPages = newRemaining
-            };
-        
-            if (RemainingPages.Any())
-            {
-                var nextPage = RemainingPages.First();
-                var result = await _navigationService.NavigateAsync(nextPage, navParams.ToNavigationParameters(), animated: animated);
-                if (!result.Success)
-                {
-                    // log
-                }
+                // Log
             }
-            else
+        }
+        
+        private async Task NavigateToMainPageAsync(Session session)
+        {
+            var user = await _userFitnessDataService.GetUserFromSessionAsync(session);
+            if (user == null)
             {
-                var user = _userFitnessDataService.GetUserFromSessionAsync(Session);
-                await _navigationService.NavigateAsync(nameof(MainFlyoutPage));
+                return;
+            }
+
+            var result = await _navigationService.NavigateAsync(
+                $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}",
+                new NavigationParameters { { "user", user } });
+
+            if (!result.Success)
+            {
+                // Log 
             }
         }
 

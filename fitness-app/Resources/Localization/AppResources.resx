@@ -312,4 +312,10 @@
     <data name="GoodMorningText" xml:space="preserve">
         <value>Good Morning</value>
     </data>
+    <data name="Step" xml:space="preserve">
+        <value>Step </value>
+    </data>
+    <data name="Of" xml:space="preserve">
+        <value> of </value>
+    </data>
 </root>
