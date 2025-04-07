@@ -492,7 +492,8 @@
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="VerticalOptions" Value="Fill" />
         <Setter Property="Padding" Value="20,0" />
-        <Setter Property="HeightRequest" Value="250" />
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Margin" Value="0,0,0,-8" /> <!-- Border has bug with extra stroke pixels, currently fixed by setting negative margin -->
         <Setter Property="StrokeShape">
             <Setter.Value>
                 <RoundRectangle CornerRadius="0,0,28,28"/>
@@ -679,7 +680,7 @@
     <Style x:Key="SelectableCategoryViewFrameStyle" TargetType="Frame">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="HeightRequest" Value="112"/>
-        <Setter Property="WidthRequestRequest" Value="112"/>
+        <Setter Property="WidthRequest" Value="112"/>
         <Setter Property="CornerRadius" Value="56"/>
         <Setter Property="IsClippedToBounds" Value="True"/>
     </Style>

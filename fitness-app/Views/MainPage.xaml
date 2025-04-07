@@ -5,13 +5,16 @@
              xmlns:constant="clr-namespace:fitness_app.Constants"
              xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
              xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:controls="clr-namespace:fitness_app.Controls"
              xmlns:views="clr-namespace:fitness_app.Views.Views"
              x:Class="fitness_app.Views.MainPage">
     
     <Grid RowDefinitions="Auto,*,Auto" 
           IgnoreSafeArea="True" 
           Style="{StaticResource MainPageGridRowSpacing}">
-        <Border Style="{StaticResource MainPageHeader}">
+        <Border Grid.Row="0" 
+                Style="{StaticResource MainPageHeader}"
+                x:Name="StickyHeader">
             <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutRowSpacing}">
                 <Grid ColumnDefinitions="Auto,Auto,*,Auto" 
                       Style="{StaticResource MainPageGridColumnSpacing}">
@@ -20,13 +23,22 @@
                             Command="{Binding OpenFlyoutCommand}"
                             Style="{StaticResource MainPageMenuButtonStyle}"/>
                     <Image Grid.Column="1"
+                           x:Name="UserPhoto"
                            Source="{Binding User.Photo}"
                            Style="{StaticResource MainImageUserPhotoStyle}"/>
                     <Button Grid.Column="3"
                             ImageSource="{x:Static constant:ImageNameConstants.Bell}"
                             Style="{StaticResource MainPageMenuButtonStyle}"/>
+                    
+                    <SearchBar x:Name="HeaderSearchBar"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               Placeholder="{x:Static resx:AppResources.SearchPlaceholder}"
+                               IsVisible="False"
+                               Style="{StaticResource MainPageSearchBarStyle}"/>
                 </Grid>
-                <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutRowSpacing1}">
+                <VerticalStackLayout Style="{StaticResource MainPageVerticalStackLayoutRowSpacing1}"
+                                     x:Name="WelcomeStack">
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
@@ -46,7 +58,10 @@
                            Style="{StaticResource MainPageSearchBarStyle}"/>
             </VerticalStackLayout>
         </Border>
-        <Grid Grid.Row="1" RowDefinitions="Auto,Auto" 
+        <ScrollView Grid.Row="1"
+                    Scrolled="OnScrollViewScrolled">
+            <Grid RowDefinitions="Auto,Auto" 
+              
               Style="{StaticResource MainPageGridContainerStyle}">
             <Border Grid.Row="0"
                     Style="{StaticResource MainPageBorderContainerStyle}">
@@ -92,7 +107,47 @@
                 <views:CategoryItemsView/>
                 
                 <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                <views:CategoryItemsView/>
+                
+                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+                
             </VerticalStackLayout>
         </Grid>
+        </ScrollView>
     </Grid>
 </ContentPage>

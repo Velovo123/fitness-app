@@ -65,6 +65,7 @@ public static class MauiProgram
                 handlers.AddHandler(typeof(BorderlessEntry), typeof(CustomEntryHandler));
                 handlers.AddHandler(typeof(PickerView), typeof(PickerViewHandler));
                 handlers.AddHandler(typeof(SearchBar), typeof(BorderlessSearchBarHandler));
+                handlers.AddHandler(typeof(StretchyHeader), typeof(StretchyHeaderHandler));
                 
                 //handlers.AddHandler(typeof(FlyoutPage), typeof(FlyoutHandler));
 #endif

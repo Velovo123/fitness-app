@@ -12,9 +12,9 @@
             <Label Style="{StaticResource OnboardingCommonViewLabelStyle}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{x:Static resx:AppResources.Step}" />
+                        <Span Text="" />
                         <Span Text="{Binding CurrentStep}"/>
-                        <Span Text="{x:Static resx:AppResources.Of}" />
+                        <Span Text="" />
                         <Span Text="{Binding TotalSteps}"/>
                     </FormattedString>
                 </Label.FormattedText>

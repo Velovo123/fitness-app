@@ -1,20 +1,57 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
-namespace fitness_app.Views;
 
-public partial class MainPage : ContentPage
+namespace fitness_app.Views
 {
-    public MainPage()
+    public partial class MainPage : ContentPage
     {
-        InitializeComponent();
-    }
+        private const double InitialHeaderHeight = 250;
+        private const double FinalHeaderHeight = 110;
 
-    private void MainSearchBar_OnSearchButtonPressed(object? sender, EventArgs e)
-    {
-        MainSearchBar.Unfocus();
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+
+        private void MainSearchBar_OnSearchButtonPressed(object? sender, EventArgs e)
+        {
+            MainSearchBar.Unfocus();
+        }
+
+        private async void OnScrollViewScrolled(object sender, ScrolledEventArgs e)
+        {
+            double newHeight = InitialHeaderHeight;
+
+            if (e.ScrollY < 0)
+            {
+                newHeight = InitialHeaderHeight - e.ScrollY;
+            }
+            else
+            {
+                double collapseThreshold = InitialHeaderHeight;
+                if (e.ScrollY <= collapseThreshold)
+                {
+                    double ratio = e.ScrollY / collapseThreshold;
+                    newHeight = InitialHeaderHeight - ((InitialHeaderHeight - FinalHeaderHeight) * ratio);
+                }
+                else
+                {
+                    newHeight = FinalHeaderHeight;
+                }
+            }
+
+            await UpdateHeaderHeight(newHeight);
+
+            bool isCollapsed = newHeight <= FinalHeaderHeight + 20;
+            
+        }
+
+        // Animate the StickyHeader height and then set HeightRequest to enforce the new size
+        private async Task UpdateHeaderHeight(double newHeight)
+        {
+            await StickyHeader.LayoutTo(new Rect(StickyHeader.X, StickyHeader.Y, StickyHeader.Width, newHeight), 50, Easing.Linear);
+            StickyHeader.HeightRequest = newHeight;
+        }
     }
 }
