@@ -21,4 +21,6 @@ public interface IAuthService
     Task<Session?> VerifyUserOtpAsync(string email, string otp);
 
     Task SendMagicLink(string email);
+    
+    Session? CurrentSession { get;}
 }

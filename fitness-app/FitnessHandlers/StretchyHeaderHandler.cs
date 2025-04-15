@@ -1,14 +1,17 @@
 #if IOS
-using fitness_app.Controls;
 using Microsoft.Maui.Handlers;
+using Microsoft.Maui;
+using fitness_app.Controls;
 using UIKit;
-using ContentView = Microsoft.Maui.Platform.ContentView;
 
 namespace fitness_app.FitnessHandlers;
 
 public class StretchyHeaderHandler : ViewHandler<StretchyHeader, StretchyHeaderView>
 {
-    public StretchyHeaderHandler(IPropertyMapper mapper, CommandMapper? commandMapper = null) : base(mapper, commandMapper)
+    public static IPropertyMapper<StretchyHeader, StretchyHeaderView> Mapper =
+        new PropertyMapper<StretchyHeader, StretchyHeaderView>(ViewHandler.ViewMapper);
+
+    public StretchyHeaderHandler() : base(Mapper)
     {
     }
 

@@ -39,11 +39,17 @@ public class ForgotViewModel : BaseViewModel
         var result = await _authService.ResetPasswordForEmailAsync(Email);
         if (result)
         {
-            await _dialogService.ShowMessageAsync(AppResources.ResetEmailSentTitle, AppResources.ResetEmailSentMessage);
+            await _dialogService.ShowMessageAsync(
+                AppResources.ResetEmailSentTitle, 
+                AppResources.ResetEmailSentMessage
+                );
         }
         else
         {
-            await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.ResetEmailErrorMessage);
+            await _dialogService.ShowMessageAsync(
+                AppResources.ErrorTitle, 
+                AppResources.ResetEmailErrorMessage
+                );
         }
     }
 }

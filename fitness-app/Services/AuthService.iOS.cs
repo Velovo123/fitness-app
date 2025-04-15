@@ -17,6 +17,7 @@ public class AuthService_iOS : IAuthService
     private readonly string _checkEmailExistenceEndpoint = EnvConstants.CheckEmailExistenceEndpoint;
     
     private readonly Client _supabaseClient;
+    public Session? CurrentSession { get; private set; }
     private bool _isInitialized;
 
     public AuthService_iOS(Client supabaseClient)
@@ -51,7 +52,8 @@ public class AuthService_iOS : IAuthService
             }
         };
         
-        return await _supabaseClient.SignUp(email, password, signUpOptions);
+        var session = await _supabaseClient.SignUp(email, password, signUpOptions);
+        return ProcessSession(session);
     }
     
     private async Task<bool> CheckIfEmailExistsAsync(string email)
@@ -96,8 +98,7 @@ public class AuthService_iOS : IAuthService
             session = null;
             // log unexpected ex
         }
-        
-        return session;
+        return ProcessSession(session);
     }
 
     public async Task<bool> ResetPasswordForEmailAsync(string email)
@@ -125,7 +126,7 @@ public class AuthService_iOS : IAuthService
                 otp,
                 Supabase.Gotrue.Constants.EmailOtpType.Email);
 
-            return IsValidSession(session) ? session : null;
+            return ProcessSession(session);
         }
         catch (GotrueException)
         {
@@ -137,6 +138,16 @@ public class AuthService_iOS : IAuthService
             //log 
             return null;
         }
+    }
+    
+    private Session? ProcessSession(Session? session)
+    {
+        if (session != null && IsValidSession(session))
+        {
+            CurrentSession = session;
+            return session;
+        }
+        return null;
     }
     
     private bool IsValidSession(Session? session)
@@ -175,7 +186,7 @@ public class AuthService_iOS : IAuthService
             nonce: null 
         );
 
-        return session;
+        return ProcessSession(session);
     }
     
     private async Task<GoogleUser?> PerformGoogleSignInAsync()
@@ -194,6 +205,11 @@ public class AuthService_iOS : IAuthService
             SignIn.SharedInstance.SignInUser();
     
         return await tcs.Task;
+    }
+
+    private void SaveCurrentSession(Session session)
+    {
+        CurrentSession = session;
     }
     
     public static UIViewController? GetRootViewController()

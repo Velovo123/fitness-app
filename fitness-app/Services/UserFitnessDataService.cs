@@ -70,6 +70,9 @@ public class UserFitnessDataService : IUserFitnessDataService
         var fullName = GetValue(UserMetadataConstants.FullName)
                        ?? GetValue(UserMetadataConstants.Name)
                        ?? session.User.Email;
+        
+        var phone = GetValue(UserMetadataConstants.Phone)
+                       ?? session.User.Phone;
 
         var photoUrl = GetValue(UserMetadataConstants.AvatarUrl)
                        ?? GetValue(UserMetadataConstants.Picture)
@@ -84,7 +87,8 @@ public class UserFitnessDataService : IUserFitnessDataService
             Height = fitnessData.Height ?? 0,   
             HeightUnit = fitnessData.HeightUnit,
             Age = fitnessData.Age ?? 0,      
-            Photo = photoUrl
+            Photo = photoUrl,
+            Phone = phone,
         };
     }
 

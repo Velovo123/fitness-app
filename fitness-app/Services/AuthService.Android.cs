@@ -45,4 +45,6 @@ public class AuthService_Android : IAuthService
     {
         throw new NotImplementedException();
     }
+
+    public Session? CurrentSession { get; private set; }
 }

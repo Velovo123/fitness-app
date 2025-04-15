@@ -3,6 +3,7 @@ using fitness_app.Constants;
 #if IOS
 using fitness_app.Controls;
 using fitness_app.FitnessHandlers;
+using fitness_app.FitnessHandlers.HandlerExtensions;
 using fitness_app.Handlers;
 #endif
 using fitness_app.Services;
@@ -35,6 +36,7 @@ public static class MauiProgram
         
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkitMediaElement()
             .UseMauiCommunityToolkit()
             .AddMauiContentButtonHandler()
             .UseSegmentedControl()
@@ -67,6 +69,8 @@ public static class MauiProgram
                 handlers.AddHandler(typeof(SearchBar), typeof(BorderlessSearchBarHandler));
                 handlers.AddHandler(typeof(StretchyHeader), typeof(StretchyHeaderHandler));
                 
+                MauiHandlerExtensions.ApplyButtonTextAlignmentHandler();
+                
                 //handlers.AddHandler(typeof(FlyoutPage), typeof(FlyoutHandler));
 #endif
                
@@ -78,8 +82,10 @@ public static class MauiProgram
         builder.Services.AddSingleton(supabaseAuthClient);
         builder.Services.AddSingleton(supabaseDbClient);
         builder.Services.AddTransient<IUserFitnessDataService, UserFitnessDataService>();
+        builder.Services.AddTransient<IWorkoutService, WorkoutService>();
+        builder.Services.AddTransient<IWorkoutExerciseService, WorkoutExerciseService>();
         #if IOS
-        builder.Services.AddTransient<IAuthService,AuthService_iOS>();
+        builder.Services.AddSingleton<IAuthService,AuthService_iOS>();
         #elif ANDROID
         builder.Services.AddTransient<IAuthService,AuthService_Android>();
 #endif
@@ -98,6 +104,10 @@ public static class MauiProgram
         services.RegisterForNavigation<SignupPage, SignupViewModel>();
         services.RegisterForNavigation<ForgotPage, ForgotViewModel>();
         services.RegisterForNavigation<VerifyAccountPage, VerifyAccountViewModel>();
+        services.RegisterForNavigation<WorkoutPage, WorkoutViewModel>();
+        services.RegisterForNavigation<WorkoutResultPage, WorkoutResultViewModel>();
+        services.RegisterForNavigation<ProfilePage, ProfileViewModel>();
+        services.RegisterForNavigation<EditPage, EditViewModel>();
     }
     public static void RegisterOnboardingWizardPages(this IServiceCollection services)
     {

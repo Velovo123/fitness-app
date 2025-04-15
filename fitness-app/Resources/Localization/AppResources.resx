@@ -318,4 +318,49 @@
     <data name="Of" xml:space="preserve">
         <value> of </value>
     </data>
+    <data name="PopularExercise" xml:space="preserve">
+        <value>POPULAR EXERCISE</value>
+    </data>
+    <data name="UpNext" xml:space="preserve">
+        <value>Up Next</value>
+    </data>
+    <data name="NextExercise" xml:space="preserve">
+        <value>NEXT EXERCISE</value>
+    </data>
+    <data name="Resume" xml:space="preserve">
+        <value>Resume</value>
+    </data>
+    <data name="Stop" xml:space="preserve">
+        <value>Stop</value>
+    </data>
+    <data name="Exercise" xml:space="preserve">
+        <value>Exercise </value>
+    </data>
+    <data name="Workout" xml:space="preserve">
+        <value>Workout</value>
+    </data>
+    <data name="Result" xml:space="preserve">
+        <value>RESULT</value>
+    </data>
+    <data name="WorkoutSummary" xml:space="preserve">
+        <value>Workout Summary</value>
+    </data>
+    <data name="Profile" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="ProfileTitle" xml:space="preserve">
+        <value>PROFILE</value>
+    </data>
+    <data name="EditProfile" xml:space="preserve">
+        <value>EDIT PROFILE</value>
+    </data>
+    <data name="Weight" xml:space="preserve">
+        <value>Weight</value>
+    </data>
+    <data name="Height" xml:space="preserve">
+        <value>Height</value>
+    </data>
+    <data name="Age" xml:space="preserve">
+        <value>Age</value>
+    </data>
 </root>

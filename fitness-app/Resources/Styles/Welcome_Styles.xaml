@@ -2,7 +2,10 @@
                     xmlns:pinview="clr-namespace:PINView.Maui;assembly=PINView.Maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:controls="clr-namespace:fitness_app.Controls"
+                    xmlns:control="clr-namespace:fitness_app.Views.Views"
+                    xmlns:constant="clr-namespace:fitness_app.Constants"
                     xmlns:s="http://plugin.segmentedControl.maui"
+                    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                     xmlns:views="clr-namespace:fitness_app.Views.NavBars">
     
     <LinearGradientBrush x:Key="Page01BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
@@ -299,6 +302,17 @@
         <Setter Property="BackgroundColor" Value="{StaticResource OliveGreen}"/>
     </Style>
     
+    <Style x:Key="SmallMainGreenButtonStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="156"/>
+        <Setter Property="HeightRequest" Value="52"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource OliveGreen}"/>
+    </Style>
+    
     <Style x:Key="MainBlackButtonStyle" TargetType="Button">
         <Setter Property="WidthRequest" Value="318"/>
         <Setter Property="HeightRequest" Value="56"/>
@@ -306,6 +320,16 @@
         <Setter Property="TextColor" Value="White"/>
         <Setter Property="FontFamily" Value="BebasRegular"/>
         <Setter Property="FontSize" Value="22"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlack}"/>
+    </Style>
+    
+    <Style x:Key="SmallMainBlackButtonStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100"/>
+        <Setter Property="HeightRequest" Value="52"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryBlack}"/>
     </Style>
     
@@ -318,6 +342,18 @@
         <Setter Property="TextColor" Value="Black"/>
         <Setter Property="FontFamily" Value="BebasRegular"/>
         <Setter Property="FontSize" Value="22"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
+    </Style>
+    
+    <Style x:Key="SmallMainWhiteButtonStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="100"/>
+        <Setter Property="HeightRequest" Value="52"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="BorderWidth" Value="0.6" />
+        <Setter Property="BorderColor" Value="{StaticResource DimGray}" />
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
     </Style>
     
@@ -420,6 +456,16 @@
         <Setter Property="NavigationPage.TitleView" Value="{views:NavBarWithSkipView}" />
     </Style>
     
+    <Style x:Key="NavigationPageDefaultStyle" TargetType="ContentPage">
+        <Setter Property="NavigationPage.IconColor" Value="Black" />
+        <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+    </Style>
+    
+    <Style x:Key="NavigationPageWithEditStyle" TargetType="ContentPage">
+        <Setter Property="NavigationPage.IconColor" Value="Black" />
+        <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+    </Style>
+    
     <Style x:Key="MainFlyoutCloseButtonStyle" TargetType="Button">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
@@ -439,9 +485,10 @@
     </Style>
     
     <Style x:Key="MainFlyoutNavigationButtonStyle" TargetType="Button">
-        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
         <Setter Property="HeightRequest" Value="52"/>
         <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="ClassId" Value="{x:Static constant:ClassIdConstants.TextAlignLeft}"/>
     </Style>
     
     <Style x:Key="MainFlyoutBoxViewStyle" TargetType="BoxView">
@@ -456,10 +503,10 @@
     </Style>
     
     <Style x:Key="MainFlyoutSignOutButtonStyle" TargetType="Button">
-        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
         <Setter Property="TextColor" Value="Black"/>
         <Setter Property="FontFamily" Value="MontserratMedium"/>
-        <Setter Property="ContentLayout" Value="Left,20"/>
+        <Setter Property="ClassId" Value="{x:Static constant:ClassIdConstants.TextAlignLeft}"/>
     </Style>
     
     <Style x:Key="MainFlyoutGridRowSpacing" TargetType="Grid">
@@ -720,5 +767,164 @@
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="TextColor" Value="Black"/>
+    </Style>
+    
+    <Style x:Key="ExerciseCardViewGridStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="0,10"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="ColumnSpacing" Value="10"/>
+    </Style>
+    
+    <Style x:Key="ExerciseCardViewBorderStyle" TargetType="Border">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HeightRequest" Value="90"/>
+        <Setter Property="WidthRequest" Value="90"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageBorderStyle" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Stroke" Value="Transparent"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
+        <Setter Property="HeightRequest" Value="420"/>
+    </Style>
+    
+    <Style x:Key="ExerciseCardViewLabelStyle" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    
+    <Style x:Key="ExerciseCardViewLabel1Style" TargetType="Label">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="Gray"/>
+    </Style>
+    
+    <Style x:Key="ExerciseCardViewProgressViewStyle" TargetType="control:VideoProgressView">
+        <Setter Property="RingWidth" Value="60"/>
+        <Setter Property="RingHeight" Value="60"/>
+        <Setter Property="RingColor" Value="Black"/>
+        <Setter Property="RingThickness" Value="6"/>
+        <Setter Property="TimeFontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="TimeFontSize" Value="12"/>
+        <Setter Property="TimeTextColor" Value="Black"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageMediaElementStyle" TargetType="toolkit:MediaElement">
+        <Setter Property="Aspect" Value="AspectFill"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageSpanStyle" TargetType="Span">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="MontserratMedium"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="TextColor" Value="{StaticResource SlateGray}"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource DarkGrey}"/>
+        <Setter Property="TextTransform" Value="Uppercase"/>
+        <Setter Property="Margin" Value="24,24,0,0"/>
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageLabel1Style" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextTransform" Value="Uppercase"/>
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
+    
+    <Style x:Key="WorkoutPageVideoProgressViewStyle" TargetType="control:VideoProgressView">
+        <Setter Property="RingWidth" Value="100"/>
+        <Setter Property="RingHeight" Value="100"/>
+        <Setter Property="RingColor" Value="Black"/>
+        <Setter Property="RingThickness" Value="10"/>
+        <Setter Property="TimeFontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="TimeFontSize" Value="14"/>
+        <Setter Property="TimeTextColor" Value="Black"/>
+        <Setter Property="Margin" Value="0,20"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource DarkGrey}"/>
+        <Setter Property="FontFamily" Value="MontserratBold"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabel1Style" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource DarkGrey}"/>
+        <Setter Property="FontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabel2Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabel3Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="MontserratBold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource DarkGrey}"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabel4Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="MontserratSemiBold"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageLabel5Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="MontserratMedium"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="NavBarTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="BebasRegular"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="NavBarSkipStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="MontserratBold"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    
+    <Style x:Key="NavBarBackButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="ImageSource" Value="{x:Static constant:ImageNameConstants.Back}"/>
+    </Style>
+    
+    <Style x:Key="NavBarEditButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="ImageSource" Value="{x:Static constant:ImageNameConstants.Edit}"/>
+    </Style>
+    
+    <Style x:Key="WorkoutResultPageBorderStyle" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource CloudGray}"/>
+        <Setter Property="WidthRequest" Value="152"/>
+        <Setter Property="HeightRequest" Value="80"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="16"></RoundRectangle>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:fitness_app.Views.Views"
+             x:Class="fitness_app.Views.Views.ExerciseCardView"
+             x:Name="This">
+    
+    <Grid Style="{StaticResource ExerciseCardViewGridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Style="{StaticResource ExerciseCardViewBorderStyle}">
+            <Image Source="{Binding Source={x:Reference This}, Path=Exercise.Thumbnail}"
+                   Aspect="AspectFill"/>
+        </Border>
+
+        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+            <Label Text="{Binding Source={x:Reference This}, Path=Exercise.ExerciseName}"
+                   Style="{StaticResource ExerciseCardViewLabelStyle}" />
+            <Label Text="{Binding Source={x:Reference This}, Path=ExerciseDurationFormatted}"
+                   Style="{StaticResource ExerciseCardViewLabel1Style}"/>
+        </VerticalStackLayout>
+
+        <control:VideoProgressView Grid.Column="2"
+                                   CurrentVideoTime="{Binding Source={x:Reference This}, Path=Exercise.Duration, Converter={StaticResource  SecondsToTimeConverter}}"
+                                   Style="{StaticResource ExerciseCardViewProgressViewStyle}" />
+
+    </Grid>
+</ContentView>

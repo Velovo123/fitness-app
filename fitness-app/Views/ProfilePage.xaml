@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navBars="clr-namespace:fitness_app.Views.NavBars"
+             NavigationPage.HasNavigationBar="True"
+             Title="Profile"
+             Style="{StaticResource NavigationPageWithEditStyle}"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             x:Class="fitness_app.Views.ProfilePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <NavigationPage.TitleView>
+        <navBars:ProfilePageNavBarView Title="{x:Static resx:AppResources.Profile}"/>
+    </NavigationPage.TitleView>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+          RowSpacing="60">
+        <VerticalStackLayout Grid.Row="0" 
+                             HorizontalOptions="Center"
+                             Spacing="12">
+            <toolkit:AvatarView ImageSource="{Binding User.Photo}"
+                                HeightRequest="104"
+                                WidthRequest="104"/>
+            <Label TextTransform="Uppercase"
+                   HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding User.FullName}"
+                              FontFamily="BebasRegular"
+                              FontSize="22"/>
+                        <Span Text="!"
+                              FontFamily="BebasRegular"
+                              FontSize="22"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+        <HorizontalStackLayout Grid.Row="1" 
+                               HorizontalOptions="Center"
+                               Spacing="24">
+            <VerticalStackLayout Spacing="4">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding User.Weight}"
+                                  FontFamily="MontserratSemiBold"
+                                  FontSize="16"/>
+                            <Span Text="{Binding User.WeightUnit}"
+                                  FontFamily="MontserratMedium"
+                                  FontSize="10"
+                                  TextTransform="Lowercase"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Weight"
+                       FontFamily="MontserratMedium"
+                       FontSize="10"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <BoxView WidthRequest="1"
+                     HeightRequest="24"
+                     Color="Gray"
+                     Margin="10,0" />
+            <VerticalStackLayout Spacing="4">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding User.Height}"
+                                  FontFamily="MontserratSemiBold"
+                                  FontSize="16"/>
+                            <Span Text="{Binding User.HeightUnit}"
+                                  FontFamily="MontserratMedium"
+                                  TextTransform="Lowercase"
+                                  FontSize="10"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Height"
+                       FontFamily="MontserratMedium"
+                       FontSize="10"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <BoxView WidthRequest="1"
+                     HeightRequest="24"
+                     Color="Gray"
+                     Margin="10,0" />
+            <VerticalStackLayout Spacing="4">
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding User.Age}"
+                                  FontFamily="MontserratSemiBold"
+                                  FontSize="16"/>
+                            <Span Text="year"
+                                  FontFamily="MontserratMedium"
+                                  FontSize="10"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Age"
+                       FontFamily="MontserratMedium"
+                       FontSize="10"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

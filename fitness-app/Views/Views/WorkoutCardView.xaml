@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constant="clr-namespace:fitness_app.Constants"
+             x:Class="fitness_app.Views.Views.WorkoutCardView"
+             x:Name="This">
+    <VerticalStackLayout Padding="0"
+                         Margin="0,0,0,20"
+                         Spacing="8">
+        <Border StrokeThickness="1"
+                Stroke="#EEE"
+                Margin="10,0"
+                Padding="0">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={x:Reference This}, Path=CardTappedCommand}"
+                                      CommandParameter="{Binding Source={x:Reference This}, Path=Workout}" />
+            </Border.GestureRecognizers>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="6"/>
+            </Border.StrokeShape>
+            <Image Source="{Binding Source={x:Reference This}, Path=Workout.WorkoutPreview}"
+                   Aspect="AspectFill"/>
+        </Border>
+
+        <Label Text="{Binding Source={x:Reference This}, Path=Workout.WorkoutName}"
+               FontFamily="MontserratSemiBold"
+               TextColor="{StaticResource DarkGrey}"
+               FontSize="12" />
+        
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="{Binding Source={x:Reference This}, Path=Workout.Level}"
+                   FontSize="10"
+                   TextTransform="Default"
+                   FontFamily="MontserratSemiBold"
+                   TextColor="Gray" />
+            
+            <BoxView WidthRequest="1" 
+                     HeightRequest="12"
+                     CornerRadius="0"
+                     VerticalOptions="Center"
+                     BackgroundColor="Gray" />
+
+            <HorizontalStackLayout Spacing="2" VerticalOptions="Center">
+                
+                <Image Source="{x:Static constant:ImageNameConstants.Clock}"
+                       HeightRequest="10"
+                       WidthRequest="10"
+                       VerticalOptions="Center" />
+
+                <Label Text="{Binding Source={x:Reference This}, Path=Workout.Duration, StringFormat=' {0} min'}"
+                       FontFamily="MontserratSemiBold"
+                       FontSize="10"
+                       TextColor="Gray" />
+            </HorizontalStackLayout>
+        </HorizontalStackLayout>
+        <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
+    </VerticalStackLayout>
+</ContentView>

@@ -6,7 +6,6 @@ namespace fitness_app.Controls;
 
 public class StretchyHeader : View
 {
-   
 }
 
 #endif

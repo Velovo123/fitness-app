@@ -13,6 +13,13 @@ public class AppDelegate : MauiUIApplicationDelegate
     protected override MauiApp CreateMauiApp()
     {
         UINavigationBar.Appearance.ShadowImage = new UIImage();
+       
+        UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes
+        {
+            Font = UIFont.FromName("Bebas Regular", 28f),
+            ForegroundColor = UIColor.Black 
+        };
+        
         return  MauiProgram.CreateMauiApp();
     }
 

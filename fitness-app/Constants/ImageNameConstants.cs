@@ -42,6 +42,12 @@ public static class ImageNameConstants
     public const string CardioCategory = "cardio_category";
     public const string StretchCategory = "stretch_category";
     public const string FullbodyCategory = "fullbody_category";
+    public const string Clock = "clock";
+    public const string Stop = "stop";
+    public const string RunningIcon = "running_icon";
+    public const string Back = "back";
+    public const string Edit = "edit_icon";
+    public const string CameraIcon = "camera_icon";
     
     
 }

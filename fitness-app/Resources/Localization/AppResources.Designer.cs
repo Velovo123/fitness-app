@@ -644,5 +644,95 @@ namespace fitness_app.Resources.Localization {
                 return ResourceManager.GetString("Of", resourceCulture);
             }
         }
+        
+        internal static string PopularExercise {
+            get {
+                return ResourceManager.GetString("PopularExercise", resourceCulture);
+            }
+        }
+        
+        internal static string UpNext {
+            get {
+                return ResourceManager.GetString("UpNext", resourceCulture);
+            }
+        }
+        
+        internal static string NextExercise {
+            get {
+                return ResourceManager.GetString("NextExercise", resourceCulture);
+            }
+        }
+        
+        internal static string Resume {
+            get {
+                return ResourceManager.GetString("Resume", resourceCulture);
+            }
+        }
+        
+        internal static string Stop {
+            get {
+                return ResourceManager.GetString("Stop", resourceCulture);
+            }
+        }
+        
+        internal static string Exercise {
+            get {
+                return ResourceManager.GetString("Exercise", resourceCulture);
+            }
+        }
+        
+        internal static string Workout {
+            get {
+                return ResourceManager.GetString("Workout", resourceCulture);
+            }
+        }
+        
+        internal static string Result {
+            get {
+                return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+        
+        internal static string WorkoutSummary {
+            get {
+                return ResourceManager.GetString("WorkoutSummary", resourceCulture);
+            }
+        }
+        
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        internal static string ProfileTitle {
+            get {
+                return ResourceManager.GetString("ProfileTitle", resourceCulture);
+            }
+        }
+        
+        internal static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
+            }
+        }
+        
+        internal static string Weight {
+            get {
+                return ResourceManager.GetString("Weight", resourceCulture);
+            }
+        }
+        
+        internal static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        internal static string Age {
+            get {
+                return ResourceManager.GetString("Age", resourceCulture);
+            }
+        }
     }
 }

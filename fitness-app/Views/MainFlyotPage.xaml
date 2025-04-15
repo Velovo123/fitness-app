@@ -4,6 +4,7 @@
             xmlns:constant="clr-namespace:fitness_app.Constants"
             x:Class="fitness_app.Views.MainFlyoutPage"
             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+            Title=""
             NavigationPage.HasNavigationBar="False">
     <FlyoutPage.Flyout>
         <ContentPage Title="Menu">
@@ -25,7 +26,7 @@
                             ImageSource="{x:Static constant:ImageNameConstants.Bell}"
                             Style="{StaticResource MainFlyoutNavigationButtonStyle}"/>
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
-                    <Button Text="{x:Static resx:AppResources.Plans}" 
+                    <Button Text="{x:Static resx:AppResources.Plans}"
                             ImageSource="{x:Static constant:ImageNameConstants.Plans}" 
                             Style="{StaticResource MainFlyoutNavigationButtonStyle}"/>
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
@@ -39,13 +40,15 @@
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
                     <Button Text="{x:Static resx:AppResources.MyAccount}" 
                             Style="{StaticResource MainFlyoutNavigationButtonStyle}"
-                            ImageSource="{x:Static constant:ImageNameConstants.MyAccount}"/>
+                            ImageSource="{x:Static constant:ImageNameConstants.MyAccount}"
+                            Command="{Binding NavigateToProfilePageCommand}"/>
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
                     <Button Text="{x:Static resx:AppResources.MyFavorites}" 
                             Style="{StaticResource MainFlyoutNavigationButtonStyle}"
                             ImageSource="{x:Static constant:ImageNameConstants.Favorites}"/>
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />
                     <Button Text="{x:Static resx:AppResources.AppSettings}" 
+                            ClassId="TextAlignLeft"
                             Style="{StaticResource MainFlyoutNavigationButtonStyle}"
                             ImageSource="{x:Static constant:ImageNameConstants.Settings}"/>
                     <BoxView Style="{StaticResource MainFlyoutBoxViewStyle}" />

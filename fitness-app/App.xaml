@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <conv:EnumToStringConverter x:Key="EnumToStringConverter" />
             <conv:EquilityConverter x:Key="EqualityConverter"/>
+            <conv:SecondsToTimeConverter x:Key="SecondsToTimeConverter"/>
             <conv:SelectedIndexEventArgsConverter x:Key="EventArgsConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Welcome_Colors.xaml" />

@@ -15,5 +15,9 @@ public partial class MainFlyoutPage
         flyoutService.SetFlyout(this);
         InitializeComponent();
     }
-    
+
+    public override bool ShouldShowToolbarButton()
+    {
+        return false;
+    }
 }

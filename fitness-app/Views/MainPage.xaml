@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constant="clr-namespace:fitness_app.Constants"
              xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             x:Name="MainPageRef"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:controls="clr-namespace:fitness_app.Controls"
              xmlns:views="clr-namespace:fitness_app.Views.Views"
@@ -108,44 +109,26 @@
                 
                 <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
                 
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                <views:CategoryItemsView/>
-                
-                <BoxView Style="{StaticResource MainPageBoxViewStyle}" />
-                
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Label Text="{x:Static resx:AppResources.PopularExercise}"
+                           Grid.Column="0"
+                           Style="{StaticResource MainPageCategoryLabelStyle}"/>
+                    <Button Text="{x:Static resx:AppResources.SeeAll}" 
+                            Grid.Column="2"
+                            Style="{StaticResource MainPageSeeAllButtonStyle}"/>
+                </Grid>
+                <CollectionView ItemsSource="{Binding Workouts}" 
+                                Margin="0,10,0,0"
+                                x:Name="WorkoutsCollectionView"
+                                SelectionMode="None">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <views:WorkoutCardView Workout="{Binding .}"
+                                                   CardTappedCommand="{Binding Source={x:Reference MainPageRef}, Path=BindingContext.WorkoutTappedCommand}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
         </Grid>
         </ScrollView>
