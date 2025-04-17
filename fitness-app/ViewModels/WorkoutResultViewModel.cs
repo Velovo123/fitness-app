@@ -39,10 +39,12 @@ public class WorkoutResultViewModel : BaseViewModel, IInitializeAsyncAware
             Workout = parameters.GetValue<Workout>(NavigationParametersConstants.Workout);
         
         if (parameters.ContainsKey(NavigationParametersConstants.Exercises))
-            Exercises = parameters.GetValue<ObservableCollection<Exercise>>(NavigationParametersConstants.Exercises);
+            Exercises = parameters.GetValue<ObservableCollection<Exercise>>(
+                NavigationParametersConstants.Exercises);
         
         if (parameters.ContainsKey(NavigationParametersConstants.CompletedExercises))
-            CompletedExercises = parameters.GetValue<int>(NavigationParametersConstants.CompletedExercises);
+            CompletedExercises = parameters.GetValue<int>(
+                NavigationParametersConstants.CompletedExercises);
         
         TotalExercises = Exercises?.Count ?? 0;
         

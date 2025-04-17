@@ -31,7 +31,11 @@ public class GoalViewModel : OnboardingWizardBaseViewModel
     
     public ICommand MoveNextCommand { get; set; }
 
-    public GoalViewModel(INavigationService navigationService, IUserFitnessDataService userFitnessDataService, IDialogService dialogService) : base(navigationService, dialogService, userFitnessDataService)
+    public GoalViewModel(
+        INavigationService navigationService, 
+        IUserFitnessDataService userFitnessDataService, 
+        IDialogService dialogService) 
+        : base(navigationService, dialogService, userFitnessDataService)
     {
         ItemTappedCommand = CreateCommand<ToggleButtonItem>(ItemTapped);
         MoveNextCommand = CreateAsyncCommand(OnMoveNextAsync);
@@ -59,11 +63,15 @@ public class GoalViewModel : OnboardingWizardBaseViewModel
     {
         if (string.IsNullOrEmpty(SelectedText))
         {
-            await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.GoalRequired);
+            await _dialogService.ShowMessageAsync(
+                AppResources.ErrorTitle, 
+                AppResources.GoalRequired);
             return;
         }
 
-        await _userFitnessDataService.UpdateUserFitnessDataAsync(Session, new UserFitnessData
+        await _userFitnessDataService.UpdateUserFitnessDataAsync(
+            Session, 
+            new UserFitnessData
         {
             Goal = SelectedText
         });

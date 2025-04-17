@@ -65,7 +65,9 @@ public class OnboardingViewModel : BaseViewModel
     
     private async Task NavigateToLoginPageAsync()
     {
-        var result = await  _navigationService.NavigateAsync($"../{nameof(LoginPage)}", animated: false);
+        var result = await  _navigationService.NavigateAsync(
+            $"../{nameof(LoginPage)}", 
+            animated: false);
 
         if (!result.Success)
         {

@@ -40,7 +40,8 @@ public class SignupViewModel : BaseViewModel
         _authService = authService;
         _dialogService = dialogService;
         
-        TogglePasswordVisibilityCommand = CreateCommand(() => IsPasswordHidden = !IsPasswordHidden);
+        TogglePasswordVisibilityCommand = CreateCommand(
+            () => IsPasswordHidden = !IsPasswordHidden);
         NavigateBackCommand = CreateAsyncCommand(NavigateBackAsync);
         SignUpCommand = CreateAsyncCommand(SignUpAsync);
     }
@@ -62,11 +63,15 @@ public class SignupViewModel : BaseViewModel
             var session = await _authService.SignUpAsync(Email, Password, FullName, Phone);
             if (session == null)
             {
-                await _dialogService.ShowMessageAsync(AppResources.AccountExistsTitle, AppResources.AccountExistsMessage);
+                await _dialogService.ShowMessageAsync(
+                    AppResources.AccountExistsTitle, 
+                    AppResources.AccountExistsMessage);
             }
             else
             {
-               await _navigationService.NavigateAsync(nameof(VerifyAccountPage), new NavigationParameters{ { NavigationParametersConstants.Email, Email} });
+               await _navigationService.NavigateAsync(
+                   nameof(VerifyAccountPage), 
+                   new NavigationParameters{ { NavigationParametersConstants.Email, Email} });
             }
         }
         catch (Exception ex)

@@ -76,11 +76,16 @@ namespace fitness_app.ViewModels
         {
             return new ObservableCollection<CategoryItem>
             {
-                new CategoryItem { Title="Yoga", ImageSource=ImageNameConstants.YogaCategory, IsSelected=false },
-                new CategoryItem { Title="Gym", ImageSource=ImageNameConstants.GymCategory, IsSelected=false },
-                new CategoryItem { Title="Cardio", ImageSource=ImageNameConstants.CardioCategory, IsSelected=false },
-                new CategoryItem { Title="Stretch", ImageSource=ImageNameConstants.StretchCategory, IsSelected=false },
-                new CategoryItem { Title="Full Body", ImageSource=ImageNameConstants.FullbodyCategory, IsSelected=false },
+                new CategoryItem { Title="Yoga", 
+                    ImageSource=ImageNameConstants.YogaCategory, IsSelected=false },
+                new CategoryItem { Title="Gym", 
+                    ImageSource=ImageNameConstants.GymCategory, IsSelected=false },
+                new CategoryItem { Title="Cardio", 
+                    ImageSource=ImageNameConstants.CardioCategory, IsSelected=false },
+                new CategoryItem { Title="Stretch", 
+                    ImageSource=ImageNameConstants.StretchCategory, IsSelected=false },
+                new CategoryItem { Title="Full Body",
+                    ImageSource=ImageNameConstants.FullbodyCategory, IsSelected=false },
             };
         }
 

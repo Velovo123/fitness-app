@@ -28,7 +28,11 @@ public class FitnessLevelViewModel : OnboardingWizardBaseViewModel
     public ICommand ItemTappedCommand { get; }
     public ICommand MoveNextCommand { get; set; }
     
-    public FitnessLevelViewModel(INavigationService navigationService, IDialogService dialogService, IUserFitnessDataService userFitnessDataService) : base(navigationService, dialogService, userFitnessDataService)
+    public FitnessLevelViewModel(
+        INavigationService navigationService, 
+        IDialogService dialogService, 
+        IUserFitnessDataService userFitnessDataService) 
+        : base(navigationService, dialogService, userFitnessDataService)
     {
         ItemTappedCommand = CreateCommand<ToggleButtonItem>(ItemTapped);
         MoveNextCommand = CreateAsyncCommand(OnMoveNextAsync);

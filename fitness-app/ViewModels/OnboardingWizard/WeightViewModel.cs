@@ -19,7 +19,10 @@ public class WeightViewModel : OnboardingWizardBaseViewModel
     public ICommand MoveNextCommand { get; set; }
     
 
-    public WeightViewModel(IDialogService dialogService,IUserFitnessDataService userFitnessDataService, INavigationService navigationService) 
+    public WeightViewModel(
+        IDialogService dialogService,
+        IUserFitnessDataService userFitnessDataService, 
+        INavigationService navigationService) 
         : base(navigationService, dialogService, userFitnessDataService)
     {
         SegmentedControlChangedCommand = CreateCommand<int>(OnSegmentedControlChanged);

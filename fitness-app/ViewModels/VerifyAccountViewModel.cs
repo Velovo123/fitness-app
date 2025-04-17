@@ -54,7 +54,9 @@ public class VerifyAccountViewModel : OnboardingBaseViewModel, IInitializeAware
         }
         else
         {
-            await _dialogService.ShowMessageAsync(AppResources.VerificationFailedTitle, AppResources.VerificationFailedMessage);
+            await _dialogService.ShowMessageAsync(
+                AppResources.VerificationFailedTitle, 
+                AppResources.VerificationFailedMessage);
             OTP = string.Empty;
         }
     }

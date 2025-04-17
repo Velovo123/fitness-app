@@ -19,7 +19,10 @@ public class HeightViewModel : OnboardingWizardBaseViewModel
     
     public bool IsButtonInMiddle { get; set; } = true;
     
-    public HeightViewModel(IDialogService dialogService, IUserFitnessDataService userFitnessDataService, INavigationService navigationService) 
+    public HeightViewModel(
+        IDialogService dialogService, 
+        IUserFitnessDataService userFitnessDataService, 
+        INavigationService navigationService) 
         : base(navigationService, dialogService, userFitnessDataService)
     {
         SegmentedControlChangedCommand = CreateCommand<int>(OnSegmentedControlChanged);

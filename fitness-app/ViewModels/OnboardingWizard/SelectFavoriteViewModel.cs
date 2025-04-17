@@ -24,7 +24,10 @@ public class SelectFavoriteViewModel : OnboardingWizardBaseViewModel
     public ICommand CategoryCommand { get; set; }
     public ICommand MoveNextCommand { get; set; }
     
-    public SelectFavoriteViewModel(IDialogService dialogService,IUserFitnessDataService userFitnessDataService,INavigationService navigationService) 
+    public SelectFavoriteViewModel(
+        IDialogService dialogService,
+        IUserFitnessDataService userFitnessDataService,
+        INavigationService navigationService) 
         : base(navigationService, dialogService, userFitnessDataService)
     {
         FillCategories();

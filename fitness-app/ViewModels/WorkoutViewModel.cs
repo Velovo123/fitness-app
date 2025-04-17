@@ -89,7 +89,8 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
     {
         if (Workout?.Id != null)
         {
-            var exercisesList = await _workoutExerciseService.GetExercisesForWorkoutAsync(Workout.Id);
+            var exercisesList = await _workoutExerciseService.GetExercisesForWorkoutAsync(
+                Workout.Id);
             Exercises = new ObservableCollection<Exercise>(exercisesList);
         }
     }

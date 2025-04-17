@@ -22,7 +22,10 @@ public class DesiredWeightViewModel : OnboardingWizardBaseViewModel
     public string TitleText { get; set; } = AppResources.DesiredWeightTitle;
     
     public bool IsButtonInMiddle { get; set; } = true;
-    public DesiredWeightViewModel(IDialogService dialogService,IUserFitnessDataService userFitnessDataService, INavigationService navigationService) 
+    public DesiredWeightViewModel(
+        IDialogService dialogService,
+        IUserFitnessDataService userFitnessDataService, 
+        INavigationService navigationService) 
         : base(navigationService, dialogService, userFitnessDataService)
     {
         SegmentedControlChangedCommand = CreateCommand<int>(OnSegmentedControlChanged);

@@ -60,9 +60,17 @@
                        
                     <s:SegmentedControl Style="{StaticResource StatsInputViewSegmentedControlStyle}"
                                         HorizontalOptions="End"
+                                        x:Name="WeightUnitSegmentControl"
+                                        SelectedSegment="{Binding WeightUnitIndex}"
                                         Margin="0,0,8,0">
-                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:WeightUnitEnum.LBS}, Converter={StaticResource EnumToStringConverter}}" />
                         <s:SegmentedControlOption Text="{Binding Source={x:Static enums:WeightUnitEnum.KG}, Converter={StaticResource EnumToStringConverter}}"/>
+                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:WeightUnitEnum.LBS}, Converter={StaticResource EnumToStringConverter}}" />
+                        
+                        <s:SegmentedControl.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                            Command="{Binding SegmentedControlWeightChangedCommand}"
+                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference WeightUnitSegmentControl}}"/>
+                        </s:SegmentedControl.Behaviors>
 
                     </s:SegmentedControl>
                 </Grid>
@@ -79,15 +87,16 @@
                        
                     <s:SegmentedControl Style="{StaticResource StatsInputViewSegmentedControlStyle}"
                                         HorizontalOptions="End"
+                                        SelectedSegment="{Binding  HeightUnitIndex}"
                                         Margin="0,0,8,0"
-                                        x:Name="UnitSegmentControl">
+                                        x:Name="HeightUnitSegmentControl">
                         <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.FEET}, Converter={StaticResource EnumToStringConverter}}" />
                         <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.CM}, Converter={StaticResource EnumToStringConverter}}" />
 
                         <s:SegmentedControl.Behaviors>
                             <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
-                                                            Command="{Binding SegmentedControlChangedCommand}"
-                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference UnitSegmentControl}}"/>
+                                                            Command="{Binding SegmentedControlHeightChangedCommand}"
+                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference HeightUnitSegmentControl}}"/>
                         </s:SegmentedControl.Behaviors>
                     </s:SegmentedControl>
                 </Grid>

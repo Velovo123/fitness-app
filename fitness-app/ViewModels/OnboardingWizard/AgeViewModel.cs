@@ -42,11 +42,15 @@ public class AgeViewModel: OnboardingWizardBaseViewModel
     {
         if (SelectedAge == null)
         {
-            await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.AgeRequired);
+            await _dialogService.ShowMessageAsync(
+                AppResources.ErrorTitle, 
+                AppResources.AgeRequired);
             return;
         }
 
-        await _userFitnessDataService.UpdateUserFitnessDataAsync(Session, new UserFitnessData
+        await _userFitnessDataService.UpdateUserFitnessDataAsync(
+            Session, 
+            new UserFitnessData
         {
             Age = SelectedAge.Value
         });
