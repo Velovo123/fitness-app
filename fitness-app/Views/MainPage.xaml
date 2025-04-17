@@ -6,7 +6,7 @@
              xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
              x:Name="MainPageRef"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             xmlns:controls="clr-namespace:fitness_app.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:views="clr-namespace:fitness_app.Views.Views"
              x:Class="fitness_app.Views.MainPage">
     
@@ -23,9 +23,9 @@
                             ImageSource="{x:Static constant:ImageNameConstants.Menu}"
                             Command="{Binding OpenFlyoutCommand}"
                             Style="{StaticResource MainPageMenuButtonStyle}"/>
-                    <Image Grid.Column="1"
+                    <toolkit:AvatarView Grid.Column="1"
                            x:Name="UserPhoto"
-                           Source="{Binding User.Photo}"
+                           ImageSource="{Binding User.Photo}"
                            Style="{StaticResource MainImageUserPhotoStyle}"/>
                     <Button Grid.Column="3"
                             ImageSource="{x:Static constant:ImageNameConstants.Bell}"

@@ -16,12 +16,21 @@ public class AuthService_Android : IAuthService
         throw new NotImplementedException();
     }
 
+    public Task<Session?> RefreshSessionAsync()
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Session?> TryAutoSignInAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<Session?> SignUpAsync(string email, string password, string fullName, string phone)
+    public Task<Session?> SignUpAsync(
+        string email, 
+        string password,
+        string fullName,
+        string phone)
     {
         throw new NotImplementedException();
     }

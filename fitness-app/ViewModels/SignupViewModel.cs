@@ -32,7 +32,9 @@ public class SignupViewModel : BaseViewModel
     public ICommand NavigateBackCommand { get; } 
     public ICommand SignUpCommand { get; }
 
-    public SignupViewModel(INavigationService navigationService,IDialogService dialogService, IAuthService authService)
+    public SignupViewModel(INavigationService navigationService,
+        IDialogService dialogService, 
+        IAuthService authService)
     {
         _navigationService = navigationService;
         _authService = authService;

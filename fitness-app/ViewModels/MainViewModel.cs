@@ -150,7 +150,9 @@ namespace fitness_app.ViewModels
             }
             else
             {
-                var user = await _userFitnessDataService.GetUserFromSessionAsync(_authService.CurrentSession!);
+                await _authService.RefreshSessionAsync();
+                var user = await _userFitnessDataService.GetUserFromSessionAsync(
+                    _authService.CurrentSession!);
                 if(user != null)
                     User = user;
                 else
@@ -173,7 +175,9 @@ namespace fitness_app.ViewModels
                 { NavigationParametersConstants.Workout, selectedWorkout }
             };
             
-            var result = await _navigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(WorkoutPage)}", navParams);
+            var result = await _navigationService.NavigateAsync(
+                $"/{nameof(NavigationPage)}/{nameof(WorkoutPage)}", 
+                navParams);
 
             if (!result.Success)
             {

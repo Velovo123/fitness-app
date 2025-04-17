@@ -139,6 +139,13 @@ public class AuthService_iOS : IAuthService
             return null;
         }
     }
+
+    public async Task<Session?> RefreshSessionAsync()
+    {
+        var session = await _supabaseClient.RefreshSession();
+        CurrentSession = session;
+        return session;
+    }
     
     private Session? ProcessSession(Session? session)
     {

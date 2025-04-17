@@ -4,6 +4,7 @@
             xmlns:constant="clr-namespace:fitness_app.Constants"
             x:Class="fitness_app.Views.MainFlyoutPage"
             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
             Title=""
             NavigationPage.HasNavigationBar="False">
     <FlyoutPage.Flyout>
@@ -16,8 +17,10 @@
                         Grid.Row="0"/>
                 <VerticalStackLayout Grid.Row="1" 
                                      Style="{StaticResource MainFlyoutVerticalStackLayoutRowSpacing}">
-                    <Image Source="{Binding User.Photo}"
-                           Style="{StaticResource MainFlyoutUserImageStyle}"/>
+                    <toolkit:AvatarView ImageSource="{Binding User.Photo}"
+                                        HeightRequest="104"
+                                        WidthRequest="104"
+                                        Style="{StaticResource MainFlyoutUserImageStyle}"/>
                     <Label Text="{Binding User.FullName}"
                            Style="{StaticResource MainFlyoutUserLabelStyle}"/>
                 </VerticalStackLayout>

@@ -81,9 +81,11 @@ public static class MauiProgram
 #endif
         builder.Services.AddSingleton(supabaseAuthClient);
         builder.Services.AddSingleton(supabaseDbClient);
+        builder.Services.AddSingleton<HttpClient>();
         builder.Services.AddTransient<IUserFitnessDataService, UserFitnessDataService>();
         builder.Services.AddTransient<IWorkoutService, WorkoutService>();
         builder.Services.AddTransient<IWorkoutExerciseService, WorkoutExerciseService>();
+        builder.Services.AddTransient<ISupabaseService, SupabaseService>();
         #if IOS
         builder.Services.AddSingleton<IAuthService,AuthService_iOS>();
         #elif ANDROID
@@ -150,7 +152,7 @@ public static class MauiProgram
         {
             AutoConnectRealtime = true,
             AutoRefreshToken = true,
-            Schema = "public"
+            Schema = "public",
         };
 
         return new Supabase.Client(supabaseUrl, supabaseKey, options);

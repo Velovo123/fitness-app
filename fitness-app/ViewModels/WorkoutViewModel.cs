@@ -48,7 +48,8 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
     public string CurrentExerciseName =>
         Exercises?.ElementAtOrDefault(CurrentVideoIndex)?.ExerciseName ?? string.Empty;
 
-    public WorkoutViewModel(IWorkoutExerciseService workoutExerciseService, INavigationService navigationService)
+    public WorkoutViewModel(IWorkoutExerciseService workoutExerciseService, 
+        INavigationService navigationService)
     {
         _workoutExerciseService = workoutExerciseService;
         _navigationService = navigationService;
@@ -127,7 +128,9 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
             MoveToNextVideo(mediaElement);
         else
         {
-            var result = await _navigationService.NavigateAsync(nameof(WorkoutResultPage), navParams);
+            var result = await _navigationService.NavigateAsync(
+                nameof(WorkoutResultPage), 
+                navParams);
             if (!result.Success)
             {
                 //log
@@ -192,7 +195,9 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
                 { NavigationParametersConstants.Exercises, Exercises },
                 { NavigationParametersConstants.CompletedExercises, CompletedExercises }
             };
-            var result = await _navigationService.NavigateAsync(nameof(WorkoutResultPage), navParams);
+            var result = await _navigationService.NavigateAsync(
+                nameof(WorkoutResultPage), 
+                navParams);
             if (!result.Success)
             {
                 // Log or handle navigation error.
@@ -203,7 +208,8 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
     private void UpdateNextExercises()
     {
         if (Exercises != null && Exercises.Any())
-            NextExercises = new ObservableCollection<Exercise>(Exercises.Skip(CurrentVideoIndex + 1));
+            NextExercises = new ObservableCollection<Exercise>(
+                Exercises.Skip(CurrentVideoIndex + 1));
     }
 
     public async void OnNavigatedTo(INavigationParameters navigationParameters)

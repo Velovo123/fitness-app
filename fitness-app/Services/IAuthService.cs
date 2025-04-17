@@ -8,6 +8,8 @@ public interface IAuthService
 
     Task<Session?> SignInWithGoogleAsync();
 
+    Task<Session?> RefreshSessionAsync();
+
     Task<Session?> SignUpAsync(
         string email,
         string password,

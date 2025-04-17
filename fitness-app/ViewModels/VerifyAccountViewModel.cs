@@ -27,7 +27,10 @@ public class VerifyAccountViewModel : OnboardingBaseViewModel, IInitializeAware
         Email = parameters.GetValue<string>(NavigationParametersConstants.Email);
     }
 
-    public VerifyAccountViewModel(IAuthService authService,IUserFitnessDataService userFitnessDataService, INavigationService navigationService,IDialogService dialogService)
+    public VerifyAccountViewModel(IAuthService authService,
+        IUserFitnessDataService userFitnessDataService, 
+        INavigationService navigationService,
+        IDialogService dialogService)
         : base(userFitnessDataService, navigationService)
     {
         _authService = authService;

@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
             
             <Grid Grid.Row="0">
-                <toolkit:AvatarView ImageSource="{Binding User.Photo}"
+                <toolkit:AvatarView ImageSource="{Binding EditableUser.Photo}"
                                     HeightRequest="120"
                                     WidthRequest="120"
                                     HorizontalOptions="Center">
@@ -45,37 +45,14 @@
                        Style="{StaticResource EntryLabelStyle}"/>
                 <Entry 
                        Keyboard="Text"
-                       Text="{Binding User.FullName, Mode=TwoWay}"
+                       Text="{Binding EditableUser.FullName, Mode=TwoWay}"
                        Style="{StaticResource EntryStyle}" />
-                <Label Text="{x:Static resx:AppResources.PhoneLabel}"
-                       Style="{StaticResource EntryLabelStyle}"/>
-                <Entry Keyboard="Telephone"
-                       Text="{Binding User.Phone}"
-                       Style="{StaticResource EntryStyle}"/>
-                <Label Text="{x:Static resx:AppResources.EmailLabel}"
-                       Style="{StaticResource EntryLabelStyle}"/>
-                <Grid ColumnDefinitions="*">
-                    <Entry 
-                        Placeholder="{x:Static resx:AppResources.EmailPlaceholder}"
-                        Keyboard="Email"
-                        Text="{Binding User.Email, Mode=TwoWay}"
-                        Style="{StaticResource EntryStyle}"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"/>
-                       
-                    <Image Source="{FileImageSource tick}" 
-                           Grid.Row="0"
-                           Grid.Column="1"
-                           Style="{StaticResource EntryImageStyle}"
-                           Grid.ColumnSpan="1"/>
-                </Grid>
                 <Label Text="{x:Static resx:AppResources.Weight}"
                        Style="{StaticResource EntryLabelStyle}"/>
                 <Grid ColumnDefinitions="*">
                     <Entry 
                         Keyboard="Numeric"
-                        Text="{Binding User.Weight, Mode=TwoWay}"
+                        Text="{Binding EditableUser.Weight, Mode=TwoWay}"
                         Style="{StaticResource EntryStyle}"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -94,7 +71,7 @@
                 <Grid ColumnDefinitions="*">
                     <Entry 
                         Keyboard="Numeric"
-                        Text="{Binding User.Height, Mode=TwoWay}"
+                        Text="{Binding EditableUser.Height, Mode=TwoWay}"
                         Style="{StaticResource EntryStyle}"
                         Grid.Row="0"
                         Grid.Column="0"
@@ -102,21 +79,28 @@
                        
                     <s:SegmentedControl Style="{StaticResource StatsInputViewSegmentedControlStyle}"
                                         HorizontalOptions="End"
-                                        Margin="0,0,8,0">
+                                        Margin="0,0,8,0"
+                                        x:Name="UnitSegmentControl">
                         <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.FEET}, Converter={StaticResource EnumToStringConverter}}" />
                         <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.CM}, Converter={StaticResource EnumToStringConverter}}" />
 
+                        <s:SegmentedControl.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                            Command="{Binding SegmentedControlChangedCommand}"
+                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference UnitSegmentControl}}"/>
+                        </s:SegmentedControl.Behaviors>
                     </s:SegmentedControl>
                 </Grid>
                 <Label Text="{x:Static resx:AppResources.Age}"
                        Style="{StaticResource EntryLabelStyle}"/>
                 <Entry 
                     Keyboard="Numeric"
-                    Text="{Binding User.Age, Mode=TwoWay}"
+                    Text="{Binding EditableUser.Age, Mode=TwoWay}"
                     Style="{StaticResource EntryStyle}" />
             </VerticalStackLayout>
             <Button Grid.Row="2"
                     Style="{StaticResource MainGreenButtonStyle}"
+                    Command="{Binding SaveUserCommand}"
                     Text="SAVE"/>
             
         </Grid>

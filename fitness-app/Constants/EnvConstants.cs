@@ -12,6 +12,7 @@ public static class EnvConstants
     public static readonly string ClientId;
     public static readonly string CheckEmailExistenceEndpoint;
     public static readonly string DefaultImageUrl;
+    public static readonly string UpdateUserAvatarEndPoint;
     
     static EnvConstants()
     {
@@ -22,5 +23,6 @@ public static class EnvConstants
         ClientId = Env.GetString("GOOGLE_CLIENT_ID");
         CheckEmailExistenceEndpoint = Env.GetString("CHECK_EMAIL_EXISTENCE_ENDPOINT");
         DefaultImageUrl = Env.GetString("DEFAULT_IMAGE_URL");
+        UpdateUserAvatarEndPoint = Env.GetString("UPDATE_USER_AVATAR_ENDPOINT");
     }
 }

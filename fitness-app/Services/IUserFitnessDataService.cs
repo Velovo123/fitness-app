@@ -9,4 +9,5 @@ public interface IUserFitnessDataService
     Task<List<string>> RetrieveMissingPropertyNamesAsync(Session session);
     Task<Models.User> GetUserFromSessionAsync(Session session);
     Task<UserFitnessData?> GetUserFitnessDataAsync(Session session);
+    Task<UserFitnessData?> UpdateUserFitnessDataAsync(Session session, Models.User user);
 }

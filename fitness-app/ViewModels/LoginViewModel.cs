@@ -35,7 +35,10 @@ public class LoginViewModel : OnboardingBaseViewModel
     
     public ICommand SignInCommand { get; }
     
-    public LoginViewModel(INavigationService navigationService,IDialogService dialogService, IAuthService authService, IUserFitnessDataService userFitnessDataService)
+    public LoginViewModel(INavigationService navigationService,
+        IDialogService dialogService, 
+        IAuthService authService, 
+        IUserFitnessDataService userFitnessDataService)
         : base(userFitnessDataService, navigationService)
     {
         _navigationService = navigationService;
