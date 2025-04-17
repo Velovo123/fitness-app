@@ -21,6 +21,11 @@ public class AuthService_Android : IAuthService
         throw new NotImplementedException();
     }
 
+    public Task SignOutAsync()
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Session?> TryAutoSignInAsync()
     {
         throw new NotImplementedException();

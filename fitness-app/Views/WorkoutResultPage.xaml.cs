@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace fitness_app.Views;
 
-public partial class WorkoutResultPage : ContentPage
+public partial class WorkoutResultPage 
 {
     public WorkoutResultPage()
     {

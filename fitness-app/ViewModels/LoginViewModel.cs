@@ -46,7 +46,8 @@ public class LoginViewModel : OnboardingBaseViewModel
         _dialogService = dialogService;
         NavigateToRegisterCommand = CreateAsyncCommand(NavigateToRegisterAsync);
         NavigateToForgotCommand = CreateAsyncCommand(NavigateToForgotAsync);
-        TogglePasswordVisibilityCommand = CreateCommand(() => IsPasswordHidden = !IsPasswordHidden);
+        TogglePasswordVisibilityCommand = CreateCommand(
+            () => IsPasswordHidden = !IsPasswordHidden);
         SignInWithGoogleCommand = CreateAsyncCommand(SignInWithGoogleAsync);
         SignInCommand = CreateAsyncCommand(SignInAsync);
     }
@@ -62,7 +63,9 @@ public class LoginViewModel : OnboardingBaseViewModel
             }
             else
             {
-                await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.InvalidEmailOrPasswordMessage);
+                await _dialogService.ShowMessageAsync(
+                    AppResources.ErrorTitle, 
+                    AppResources.InvalidEmailOrPasswordMessage);
             }
         }
         catch (GotrueException ex)
@@ -78,8 +81,11 @@ public class LoginViewModel : OnboardingBaseViewModel
 
     private async Task HandleGotrueExceptionAsync(GotrueException ex)
     {
-        var errorResponse = JsonConvert.DeserializeObject<SupabaseError>(ex.Message);
-        if (errorResponse != null && errorResponse.ErrorCode.Equals(AuthErrorConstants.EmailNotConfirmed, StringComparison.OrdinalIgnoreCase))
+        var errorResponse = JsonConvert.DeserializeObject<SupabaseError>(
+            ex.Message);
+        if (errorResponse != null && errorResponse.ErrorCode.Equals(
+                AuthErrorConstants.EmailNotConfirmed, 
+                StringComparison.OrdinalIgnoreCase))
         {
             await HandleEmailNotConfirmedAsync();
         }
@@ -91,10 +97,16 @@ public class LoginViewModel : OnboardingBaseViewModel
 
     private async Task HandleEmailNotConfirmedAsync()
     {
-        await _dialogService.ShowMessageAsync(AppResources.ErrorTitle, AppResources.EmailNotConfirmedMessage);
+        await _dialogService.ShowMessageAsync(
+            AppResources.ErrorTitle, 
+            AppResources.EmailNotConfirmedMessage);
         await _authService.SendMagicLink(Email);
-        await _navigationService.NavigateAsync(nameof(VerifyAccountPage), 
-            new NavigationParameters { { NavigationParametersConstants.Email, Email } });
+        await _navigationService.NavigateAsync(
+            nameof(VerifyAccountPage), 
+            new NavigationParameters
+            {
+                { NavigationParametersConstants.Email, Email }
+            });
     }
 
 

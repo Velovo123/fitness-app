@@ -16,12 +16,10 @@ using fitness_app.Views.OnboardingWizard;
 using fitness_app.Views.Welcome;
 using MauiContentButton;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Handlers;
 using MPowerKit.Navigation;
 using MPowerKit.Navigation.Utilities;
 using Plugin.SegmentedControl.Maui;
 using Supabase.Gotrue;
-using Vapolia.WheelPickers;
 
 namespace fitness_app;
 

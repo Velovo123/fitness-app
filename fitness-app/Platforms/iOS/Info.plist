@@ -34,7 +34,7 @@
 		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Storyboard</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -50,5 +50,7 @@
 	<string>This app needs access to the photo gallery for picking photos and videos.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to photos gallery for picking photos and videos.</string>
+	<key>CFBundleExecutable</key>
+	<string></string>
 </dict>
 </plist>

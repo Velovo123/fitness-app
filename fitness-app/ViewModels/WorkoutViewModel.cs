@@ -21,7 +21,8 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
     private readonly IWorkoutExerciseService _workoutExerciseService;
     private readonly INavigationService _navigationService;
 
-    public string CurrentVideoTime { get; set; } = TimeFormatConstants.DefaultTime;
+    public string CurrentVideoTime { get; set; } = 
+        TimeFormatConstants.DefaultTime;
     public bool IsPaused { get; set; } 
     
     public int CompletedExercises { get; set; }
@@ -220,7 +221,7 @@ public class WorkoutViewModel : BaseViewModel, IInitializeAsyncAware, INavigatio
         else
         {
             var result = await _navigationService.NavigateAsync(
-                $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}");
+                NavigationUriConstants.MainPageRoute);
             if (!result.Success)
             {
                 //log

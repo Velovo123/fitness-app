@@ -8,6 +8,7 @@ using fitness_app.Models.Supabase;
 using fitness_app.Services;
 using fitness_app.ViewModels.Base;
 using fitness_app.Views;
+using fitness_app.Views.Welcome;
 using MPowerKit;
 using MPowerKit.Navigation.Awares;
 using MPowerKit.Navigation.Interfaces;
@@ -26,15 +27,17 @@ namespace fitness_app.ViewModels
 
         public ObservableCollection<ToggleButtonItem> Items { get; }
         public ObservableCollection<CategoryItem> CategoryItems { get; }
-        public ObservableCollection<Workout> Workouts { get; set; } = new ObservableCollection<Workout>();
+        public ObservableCollection<Workout> Workouts { get; set; } =
+            new ObservableCollection<Workout>();
         public User? User { get; set; }
         public ICommand OpenFlyoutCommand { get; set; }
         public ICommand CloseFlyoutCommand { get; set; }
         public ICommand ItemTappedCommand { get; }
         public ICommand CategoryCommand { get; set; }
         public ICommand WorkoutTappedCommand { get; }
-        
         public ICommand NavigateToProfilePageCommand { get; }
+        
+        public ICommand SignOutUserCommand { get; }
 
         public MainViewModel(
             IFlyoutService flyoutService, 
@@ -54,11 +57,21 @@ namespace fitness_app.ViewModels
             CategoryCommand = CreateCommand<CategoryItem>(ChangeCategoryAsync);
             ItemTappedCommand = new Command<ToggleButtonItem>(OnItemTapped);
             NavigateToProfilePageCommand = CreateAsyncCommand(NavigateToProfilePageAsync);
+            SignOutUserCommand = CreateAsyncCommand(SignOutUserAsync);
 
             Items = InitializeToggleButtonItems();
             CategoryItems = InitializeCategoryItems();
 
-            WorkoutTappedCommand = CreateAsyncCommand<Workout>(OnWorkoutTappedAsync);
+            WorkoutTappedCommand = 
+                CreateAsyncCommand<Workout>(OnWorkoutTappedAsync);
+        }
+
+        private async Task SignOutUserAsync()
+        {
+            await _authService.SignOutAsync();
+
+            await _navigationService.NavigateAsync(
+                NavigationUriConstants.WelcomeMainPageRoute);
         }
 
         private ObservableCollection<ToggleButtonItem> InitializeToggleButtonItems()
@@ -76,16 +89,36 @@ namespace fitness_app.ViewModels
         {
             return new ObservableCollection<CategoryItem>
             {
-                new CategoryItem { Title="Yoga", 
-                    ImageSource=ImageNameConstants.YogaCategory, IsSelected=false },
-                new CategoryItem { Title="Gym", 
-                    ImageSource=ImageNameConstants.GymCategory, IsSelected=false },
-                new CategoryItem { Title="Cardio", 
-                    ImageSource=ImageNameConstants.CardioCategory, IsSelected=false },
-                new CategoryItem { Title="Stretch", 
-                    ImageSource=ImageNameConstants.StretchCategory, IsSelected=false },
-                new CategoryItem { Title="Full Body",
-                    ImageSource=ImageNameConstants.FullbodyCategory, IsSelected=false },
+                new CategoryItem 
+                { 
+                    Title="Yoga", 
+                    ImageSource=ImageNameConstants.YogaCategory, 
+                    IsSelected=false 
+                },
+                new CategoryItem
+                { 
+                    Title="Gym", 
+                    ImageSource=ImageNameConstants.GymCategory, 
+                    IsSelected=false 
+                },
+                new CategoryItem 
+                { 
+                    Title="Cardio", 
+                    ImageSource=ImageNameConstants.CardioCategory, 
+                    IsSelected=false 
+                },
+                new CategoryItem 
+                { 
+                    Title="Stretch", 
+                    ImageSource=ImageNameConstants.StretchCategory, 
+                    IsSelected=false 
+                },
+                new CategoryItem 
+                { 
+                    Title="Full Body",
+                    ImageSource=ImageNameConstants.FullbodyCategory, 
+                    IsSelected=false 
+                },
             };
         }
 
@@ -96,7 +129,7 @@ namespace fitness_app.ViewModels
                 { NavigationParametersConstants.User, User! }
             };
             await _navigationService.NavigateThrougFlyoutPageAsync(
-                $"{nameof(NavigationPage)}/{nameof(ProfilePage)}",
+                NavigationUriConstants.ProfilePageRoute,
                 navParams);
             
             CloseFlyout();
@@ -151,12 +184,14 @@ namespace fitness_app.ViewModels
         {
             if (parameters.ContainsKey(NavigationParametersConstants.User))
             {
-                User = parameters.GetValue<User>(NavigationParametersConstants.User);
+                User = parameters.GetValue<User>(
+                    NavigationParametersConstants.User);
             }
             else
             {
                 await _authService.RefreshSessionAsync();
-                var user = await _userFitnessDataService.GetUserFromSessionAsync(
+                var user = await 
+                    _userFitnessDataService.GetUserFromSessionAsync(
                     _authService.CurrentSession!);
                 if(user != null)
                     User = user;
@@ -181,7 +216,7 @@ namespace fitness_app.ViewModels
             };
             
             var result = await _navigationService.NavigateAsync(
-                $"/{nameof(NavigationPage)}/{nameof(WorkoutPage)}", 
+                NavigationUriConstants.WorkoutPageRoute, 
                 navParams);
 
             if (!result.Success)

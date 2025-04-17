@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using fitness_app.Constants;
 using fitness_app.Controls;
 using fitness_app.Helpers;
 using fitness_app.Resources.Localization;
@@ -14,7 +15,9 @@ using Supabase.Gotrue;
 namespace fitness_app.ViewModels.Base
 {
     [AddINotifyPropertyChangedInterface]
-    public class OnboardingWizardBaseViewModel : BaseViewModel, IInitializeAsyncAware
+    public class OnboardingWizardBaseViewModel : 
+        BaseViewModel, 
+        IInitializeAsyncAware
     {
         protected readonly INavigationService _navigationService;
         protected readonly IUserFitnessDataService _userFitnessDataService;
@@ -24,18 +27,21 @@ namespace fitness_app.ViewModels.Base
         protected Session Session { get; set; } = null!;
         protected List<string> RemainingPages { get; set; } = new();
         
-        public int SelectedIndex { get; set; } = 0; // to base
-        public string SelectedUnit { get; set; } = string.Empty; // to base
+        public int SelectedIndex { get; set; } = 0; 
+        public string SelectedUnit { get; set; } = string.Empty; 
     
-        public string CurrentStat { get; set; } = string.Empty; //to base 
-        public ICommand FocusEntryCommand { get; } // to base
+        public string CurrentStat { get; set; } = string.Empty; 
+        public ICommand FocusEntryCommand { get; } 
 
         public int TotalSteps { get; set; }
         public int CurrentStep { get; set; }
 
         public ICommand SkipCommand { get; set; }
 
-        public OnboardingWizardBaseViewModel(INavigationService navigationService,IDialogService dialogService, IUserFitnessDataService userFitnessDataService)
+        public OnboardingWizardBaseViewModel(
+            INavigationService navigationService,
+            IDialogService dialogService, 
+            IUserFitnessDataService userFitnessDataService)
         {
             _navigationService = navigationService;
             _dialogService = dialogService;
@@ -46,7 +52,8 @@ namespace fitness_app.ViewModels.Base
 
         public async Task InitializeAsync(INavigationParameters parameters)
         {
-            var onboardingParams = OnboardingNavigationParameters.From(parameters);
+            var onboardingParams = 
+                OnboardingNavigationParameters.From(parameters);
             Session = onboardingParams.Session;
             RemainingPages = onboardingParams.RemainingPages;
 
@@ -60,7 +67,8 @@ namespace fitness_app.ViewModels.Base
         {
             if (OnboardingNavigationParameters.InitalPageCount == 0)
             {
-                OnboardingNavigationParameters.InitalPageCount = RemainingPages.Count + 1;
+                OnboardingNavigationParameters.InitalPageCount = 
+                    RemainingPages.Count + 1;
             }
             TotalSteps = OnboardingNavigationParameters.InitalPageCount;
         }
@@ -97,10 +105,15 @@ namespace fitness_app.ViewModels.Base
             }
         }
         
-        private async Task NavigateToNextOnboardingPageAsync(OnboardingNavigationParameters navParams)
+        private async Task NavigateToNextOnboardingPageAsync(
+            OnboardingNavigationParameters navParams)
         {
             var nextPage = RemainingPages.First();
-            var result = await _navigationService.NavigateAsync(nextPage, navParams.ToNavigationParameters(), animated: false);
+            var result = await 
+                _navigationService.NavigateAsync(
+                    nextPage, 
+                    navParams.ToNavigationParameters(), 
+                    animated: false);
             if (!result.Success)
             {
                 // Log
@@ -109,15 +122,19 @@ namespace fitness_app.ViewModels.Base
         
         private async Task NavigateToMainPageAsync(Session session)
         {
-            var user = await _userFitnessDataService.GetUserFromSessionAsync(session);
+            var user = await 
+                _userFitnessDataService.GetUserFromSessionAsync(session);
             if (user == null)
             {
                 return;
             }
 
             var result = await _navigationService.NavigateAsync(
-                $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}",
-                new NavigationParameters { { "user", user } });
+                NavigationUriConstants.MainPageRoute,
+                new NavigationParameters
+                {
+                    { NavigationParametersConstants.User, user }
+                });
 
             if (!result.Success)
             {

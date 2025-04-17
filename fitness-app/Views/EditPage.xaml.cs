@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fitness_app.Views;
 
-public partial class EditPage : ContentPage
+public partial class EditPage 
 {
     public EditPage()
     {

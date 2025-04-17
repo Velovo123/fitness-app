@@ -4,14 +4,15 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace fitness_app.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage 
     {
-        private const double InitialHeaderHeight = 250;
+        private const double InitialHeaderHeight = 270;
         private const double FinalHeaderHeight = 110;
 
         public MainPage()
         {
             InitializeComponent();
+            StickyHeader.HeightRequest = InitialHeaderHeight;
         }
 
         private void MainSearchBar_OnSearchButtonPressed(object? sender, EventArgs e)
@@ -47,7 +48,6 @@ namespace fitness_app.Views
             
         }
 
-        // Animate the StickyHeader height and then set HeightRequest to enforce the new size
         private async Task UpdateHeaderHeight(double newHeight)
         {
             await StickyHeader.LayoutTo(new Rect(StickyHeader.X, StickyHeader.Y, StickyHeader.Width, newHeight), 50, Easing.Linear);

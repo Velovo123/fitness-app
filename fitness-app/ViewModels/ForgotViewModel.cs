@@ -21,7 +21,9 @@ public class ForgotViewModel : BaseViewModel
     public ICommand ResetPasswordCommand { get; }
     public bool IsEmailValid { get; set; }
 
-    public ForgotViewModel(IAuthService authService, IDialogService dialogService)
+    public ForgotViewModel(
+        IAuthService authService, 
+        IDialogService dialogService)
     {
         _authService = authService;
         _dialogService = dialogService;
@@ -36,7 +38,8 @@ public class ForgotViewModel : BaseViewModel
 
     private async Task ResetPasswordAsync()
     {
-        var result = await _authService.ResetPasswordForEmailAsync(Email);
+        var result = await 
+            _authService.ResetPasswordForEmailAsync(Email);
         if (result)
         {
             await _dialogService.ShowMessageAsync(

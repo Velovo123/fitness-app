@@ -64,6 +64,7 @@
                 <Button Grid.Row="3" 
                         ImageSource="{x:Static constant:ImageNameConstants.Signout}"
                         Text="{x:Static resx:AppResources.SignOut}"
+                        Command="{Binding SignOutUserCommand}"
                         Style="{StaticResource MainFlyoutSignOutButtonStyle}"/>
             </Grid>
         </ContentPage>

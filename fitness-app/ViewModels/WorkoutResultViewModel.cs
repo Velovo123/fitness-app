@@ -54,7 +54,7 @@ public class WorkoutResultViewModel : BaseViewModel, IInitializeAsyncAware
     private async Task NavigateBackCommand()
     {
         var result = await _navigationService.NavigateAsync(
-            $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}");
+            NavigationUriConstants.MainPageRoute);
         if (!result.Success)
         {
             //log
@@ -68,7 +68,8 @@ public class WorkoutResultViewModel : BaseViewModel, IInitializeAsyncAware
             return 0;
         }
 
-        double duration = await _workoutExerciseService.GetWorkoutDurationAsync(Workout.Id!);
+        double duration = await 
+            _workoutExerciseService.GetWorkoutDurationAsync(Workout.Id!);
         return duration;
     }
     

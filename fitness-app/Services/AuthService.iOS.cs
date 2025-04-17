@@ -34,7 +34,18 @@ public class AuthService_iOS : IAuthService
             _isInitialized = true;
         }
     }
-    
+
+    public async Task SignOutAsync()
+    {
+        await _supabaseClient.SignOut();
+        CurrentSession = null;
+
+        if (SignIn.SharedInstance.HasPreviousSignIn)
+        {
+            SignIn.SharedInstance.DisconnectUser();
+        }
+    }
+
     public async Task<Session?> SignUpAsync(string email, string password, string fullName, string phone)
     {
         var emailExists = await CheckIfEmailExistsAsync(email);

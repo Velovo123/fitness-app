@@ -138,10 +138,6 @@
       </EmbeddedResource>
     </ItemGroup>
 
-    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-        <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    </ItemGroup>
-
     <ItemGroup>
       <MauiXaml Update="Views\Welcome\OnboardingPage.xaml">
         <SubType>Designer</SubType>

@@ -9,6 +9,8 @@ public interface IAuthService
     Task<Session?> SignInWithGoogleAsync();
 
     Task<Session?> RefreshSessionAsync();
+    
+    Task SignOutAsync();
 
     Task<Session?> SignUpAsync(
         string email,

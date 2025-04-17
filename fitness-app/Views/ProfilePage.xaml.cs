@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fitness_app.Views;
 
-public partial class ProfilePage : ContentPage
+public partial class ProfilePage 
 {
     public ProfilePage()
     {

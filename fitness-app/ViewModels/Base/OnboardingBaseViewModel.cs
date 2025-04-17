@@ -1,3 +1,4 @@
+using fitness_app.Constants;
 using fitness_app.Helpers;
 using fitness_app.Services;
 using fitness_app.Views;
@@ -14,14 +15,17 @@ public class OnboardingBaseViewModel : BaseViewModel
     private readonly INavigationService _navigationService;
     private readonly IUserFitnessDataService _userFitnessDataService;
 
-    public OnboardingBaseViewModel(IUserFitnessDataService userFitnessDataService, INavigationService navigationService)
+    public OnboardingBaseViewModel(
+        IUserFitnessDataService userFitnessDataService, 
+        INavigationService navigationService)
     {
         _userFitnessDataService = userFitnessDataService;
         _navigationService = navigationService;
     }
     protected async Task HandleUserOnboardingAsync(Session session)
     {
-        var missingProperties = await _userFitnessDataService.RetrieveMissingPropertyNamesAsync(session);
+        var missingProperties = await 
+            _userFitnessDataService.RetrieveMissingPropertyNamesAsync(session);
 
         var pagesToNavigate = FitnessDataPageMap.OrderedProperties
             .Where(missingProperties.Contains) 
@@ -41,14 +45,15 @@ public class OnboardingBaseViewModel : BaseViewModel
     
     private async Task NavigateToMainPageAsync(Session session)
     {
-        var user = await _userFitnessDataService.GetUserFromSessionAsync(session);
+        var user = await 
+            _userFitnessDataService.GetUserFromSessionAsync(session);
         if (user == null)
         {
             return;
         }
 
         var result = await _navigationService.NavigateAsync(
-            $"/{nameof(MainFlyoutPage)}/{nameof(MainPage)}",
+            NavigationUriConstants.MainPageRoute,
             new NavigationParameters { { "user", user } });
 
         if (!result.Success)
@@ -57,7 +62,9 @@ public class OnboardingBaseViewModel : BaseViewModel
         }
     }
     
-    private async Task NavigateOnboardingPagesAsync(Session session, List<string> pagesToNavigate)
+    private async Task NavigateOnboardingPagesAsync(
+        Session session, 
+        List<string> pagesToNavigate)
     {
         var onboardingParams = new OnboardingNavigationParameters
         {
@@ -66,7 +73,9 @@ public class OnboardingBaseViewModel : BaseViewModel
         };
 
         var firstPage = pagesToNavigate.First();
-        var result = await _navigationService.NavigateAsync(firstPage, onboardingParams.ToNavigationParameters());
+        var result = await _navigationService.NavigateAsync(
+            firstPage, 
+            onboardingParams.ToNavigationParameters());
 
         if (!result.Success)
         {

@@ -60,7 +60,8 @@ public class SignupViewModel : BaseViewModel
     {
         try
         {
-            var session = await _authService.SignUpAsync(Email, Password, FullName, Phone);
+            var session = await _authService.SignUpAsync(
+                Email, Password, FullName, Phone);
             if (session == null)
             {
                 await _dialogService.ShowMessageAsync(
@@ -71,7 +72,10 @@ public class SignupViewModel : BaseViewModel
             {
                await _navigationService.NavigateAsync(
                    nameof(VerifyAccountPage), 
-                   new NavigationParameters{ { NavigationParametersConstants.Email, Email} });
+                   new NavigationParameters
+                   {
+                       { NavigationParametersConstants.Email, Email}
+                   });
             }
         }
         catch (Exception ex)

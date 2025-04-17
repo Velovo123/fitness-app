@@ -4,7 +4,7 @@ using Microsoft.Maui.Controls;
 
 namespace fitness_app;
 
-public partial class App : Application
+public partial class App 
 {
     public App()
     {
