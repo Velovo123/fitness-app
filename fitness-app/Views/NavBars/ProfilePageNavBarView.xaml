@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constant="clr-namespace:fitness_app.Constants"
+             x:Class="fitness_app.Views.NavBars.ProfilePageNavBarView"
+             x:Name="NavBarRoot">
+    <Grid ColumnDefinitions="*">
+        <Button ImageSource="{x:Static constant:ImageNameConstants.Back}"
+                Command="{Binding BackCommand}"
+                HorizontalOptions="Start"
+                VerticalOptions="Center"
+                FontSize="32"
+                TextColor="Black"/>
+        <Label HorizontalOptions="Center" 
+               Text="{Binding Title, Source={x:Reference NavBarRoot}}"
+               FontFamily="BebasRegular"
+               FontSize="32"/>
+        <Button ImageSource="{x:Static constant:ImageNameConstants.Edit}"
+                Command="{Binding EditCommand}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                FontSize="32"
+                TextColor="Black"/>
+    </Grid>
+</ContentView>

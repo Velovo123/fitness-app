@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:constant="clr-namespace:fitness_app.Constants"
+    xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+    xmlns:control="clr-namespace:fitness_app.Views.Views"
+    x:Class="fitness_app.Views.WorkoutPage"
+    Style="{StaticResource NavigationPageStyle}"
+    NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Unloaded"
+                                        Command="{Binding FreeResourcesCommand}"
+                                        CommandParameter="{x:Reference MyMediaElement}"/>
+    </ContentPage.Behaviors>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto, *" IgnoreSafeArea="True">
+        <Border Grid.Row="0"
+                Style="{StaticResource WorkoutPageBorderStyle}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,24,24" />
+            </Border.StrokeShape>
+
+            <toolkit:MediaElement
+                x:Name="MyMediaElement"
+                Source="{Binding CurrentVideo}"
+                ShouldAutoPlay="True"
+                ShouldShowPlaybackControls="False"
+                Style="{StaticResource WorkoutPageMediaElementStyle}">
+                <toolkit:MediaElement.Behaviors>
+                    <toolkit:EventToCommandBehavior EventName="PositionChanged"
+                                                    Command="{Binding VideoPositionChangedCommand}"
+                                                    CommandParameter="{x:Reference MyMediaElement}" />
+                    <toolkit:EventToCommandBehavior EventName="MediaEnded"
+                                                    Command="{Binding VideoEndedCommand}"
+                                                    CommandParameter="{x:Reference MyMediaElement}" />
+                </toolkit:MediaElement.Behaviors>
+            </toolkit:MediaElement>
+        </Border>
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="24,24,0,0">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{x:Static resx:AppResources.Exercise}"
+                              Style="{StaticResource WorkoutPageSpanStyle}" />
+
+                        <Span Text="{Binding CurrentExerciseNumber}"
+                              Style="{StaticResource WorkoutPageSpanStyle}" />
+
+                        <Span Text="/"
+                              Style="{StaticResource WorkoutPageSpanStyle}" />
+
+                        <Span Text="{Binding TotalExerciseCount}"
+                              Style="{StaticResource WorkoutPageSpanStyle}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{Binding CurrentExerciseName}"
+                   Style="{StaticResource WorkoutPageLabel1Style}" />
+
+            <control:VideoProgressView Progress="{Binding Progress}"
+                                       CurrentVideoTime="{Binding CurrentVideoTime}"
+                                       Style="{StaticResource WorkoutPageVideoProgressViewStyle}" />
+
+        </VerticalStackLayout>
+
+
+        <HorizontalStackLayout HorizontalOptions="Center"
+                               Grid.Row="2"
+                               Spacing="20">
+            <Button
+                Command="{Binding ToggleVideoCommand}"
+                CommandParameter="{x:Reference MyMediaElement}"
+                Style="{StaticResource SmallMainWhiteButtonStyle}">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsPaused}" Value="False">
+                        <Setter Property="Text" Value="{x:Static resx:AppResources.Stop}" />
+                        <Setter Property="Style" Value="{StaticResource SmallMainWhiteButtonStyle}" />
+                        <Setter Property="ImageSource" Value="{x:Static constant:ImageNameConstants.Stop}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsPaused}" Value="True">
+                        <Setter Property="Text" Value="{x:Static resx:AppResources.Resume}" />
+                        <Setter Property="Style" Value="{StaticResource SmallMainBlackButtonStyle}" />
+                        <Setter Property="ImageSource" Value="{x:Null}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Text="{x:Static resx:AppResources.NextExercise}"
+                    Command="{Binding SkipExerciseCommand}"
+                    CommandParameter="{x:Reference MyMediaElement}"
+                    ImageSource="{x:Static constant:ImageNameConstants.RunningIcon}"
+                    Style="{StaticResource SmallMainGreenButtonStyle}" />
+        </HorizontalStackLayout>
+
+        <Label Text="{x:Static resx:AppResources.UpNext}"
+               Grid.Row="3"
+               Style="{StaticResource WorkoutPageLabelStyle}"/>
+
+        <ScrollView Grid.Row="4"
+                    VerticalScrollBarVisibility="Never"
+                    Padding="8,0,8,0">
+            <CollectionView ItemsSource="{Binding NextExercises}"
+                            SelectionMode="None"
+                            Margin="0,10,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <control:ExerciseCardView Exercise="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.Welcome.OnboardingPage"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             xmlns:local="clr-namespace:fitness_app.Views.Welcome"
+             Background="{Binding CurrentBackground}"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource NavigationPageStyle}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Welcome/Templates/Welcome02Template.xaml" />
+                <ResourceDictionary Source="/Views/Welcome/Templates/Welcome03Template.xaml" />
+                <ResourceDictionary Source="/Views/Welcome/Templates/Welcome04Template.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <local:OnboardingSlideTemplateSelector x:Key="SlideTemplateSelector"
+                                                   Welcome02Template="{StaticResource Welcome02Template}"
+                                                   Welcome03Template="{StaticResource Welcome03Template}"
+                                                   Welcome04Template="{StaticResource Welcome04Template}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="*,Auto">
+        <CarouselView Grid.Row="0"
+                      ItemsSource="{Binding Slides}"
+                      ItemTemplate="{StaticResource SlideTemplateSelector}"
+                      IndicatorView="IndicatorView"
+                      Position="{Binding CurrentIndex, Mode=TwoWay}" >
+            <CarouselView.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left"
+                                        Command="{Binding SwipeLeftCommand}"/>
+            </CarouselView.GestureRecognizers>
+        </CarouselView>
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" Padding="20" VerticalOptions="End">
+            <Button Grid.Column="0"
+                    Text="{x:Static resx:AppResources.Nav_Skip}"
+                    Style="{StaticResource NavButtonStyle}"
+                    Command="{Binding SkipCommand}" />
+            <IndicatorView x:Name="IndicatorView"
+                           Grid.Column="1"
+                           Style="{StaticResource IndicatorViewStyle}"
+                           ItemsSource="{Binding Slides}"
+                           Position="{Binding CurrentIndex, Mode=TwoWay}">
+
+                <IndicatorView.IndicatorTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource IndicatorFrameStyle}"/>
+                    </DataTemplate>
+                </IndicatorView.IndicatorTemplate>
+            </IndicatorView>
+            <Button Grid.Column="2"
+                    Text="{x:Static resx:AppResources.Nav_Next}"
+                    Style="{StaticResource NavButtonStyle}"
+                    Command="{Binding NextCommand}" />
+        </Grid>
+    </Grid>
+</ContentPage>
+

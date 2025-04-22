@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{x:Static resx:AppResources.Result}"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             xmlns:navBars="clr-namespace:fitness_app.Views.NavBars"
+             NavigationPage.HasBackButton="False"
+             Style="{StaticResource NavigationPageDefaultStyle}"
+             
+             x:Class="fitness_app.Views.WorkoutResultPage">
+       <NavigationPage.TitleView>
+              <navBars:DefaultNavBarView Title="{x:Static resx:AppResources.Result}"/>
+       </NavigationPage.TitleView>
+       <Grid RowDefinitions="Auto,*,Auto" Padding="24,24,24,0" RowSpacing="40">
+        <VerticalStackLayout Grid.Row="0" Spacing="16">
+            <Label Text="{x:Static resx:AppResources.Workout}"
+                   Style="{StaticResource WorkoutResultPageLabelStyle}" />
+            <Label Text="{Binding Workout.WorkoutName}"
+                   Style="{StaticResource WorkoutResultPageLabel1Style}" />
+            <Label Text="Completed on 24/02/2022" 
+                   Style="{StaticResource WorkoutResultPageLabel2Style}" />
+            <Label>
+                   <Label.FormattedText>
+                          <FormattedString>
+                                 <FormattedString.Spans>
+                                        <Span Text="{x:Static resx:AppResources.Exercise}"
+                                              Style="{StaticResource WorkoutResultPageLabel2Style}"/>
+                                        <Span Text="{Binding CompletedExercises}"
+                                              Style="{StaticResource WorkoutResultPageLabel2Style}"/>
+                                        <Span Text="/" />
+                                        <Span Text="{Binding TotalExercises}"
+                                              Style="{StaticResource WorkoutResultPageLabel2Style}"/>
+                                 </FormattedString.Spans>
+                          </FormattedString>
+                   </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+           
+        <VerticalStackLayout Grid.Row="1" Spacing="24">
+               <Label Text="{x:Static resx:AppResources.WorkoutSummary}"
+                      Style="{StaticResource WorkoutResultPageLabel3Style}"/>
+               <Border Style="{StaticResource WorkoutResultPageBorderStyle}">
+                      <VerticalStackLayout VerticalOptions="Center"
+                                           Spacing="4">
+                             <Label Text="Total time"
+                                    Style="{StaticResource WorkoutResultPageLabel4Style}"/>
+                             <Label Style="{StaticResource WorkoutResultPageLabel5Style}">
+                                    <Label.FormattedText>
+                                           <FormattedString>
+                                                  <FormattedString.Spans>
+                                                         <Span Text="{Binding WorkoutDuration, Converter={StaticResource SecondsToTimeConverter}}" />
+                                                         <Span Text=" min" />
+                                                  </FormattedString.Spans>
+                                           </FormattedString>
+                                    </Label.FormattedText>
+                             </Label>
+                      </VerticalStackLayout>
+               </Border>
+        </VerticalStackLayout>
+           <Button Style="{StaticResource MainGreenButtonStyle}"
+                   Grid.Row="2"
+                   Text="Save"/>
+    </Grid>
+
+</ContentPage>

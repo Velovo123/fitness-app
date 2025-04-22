@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="fitness_app.Views.EditPage"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             Title="{x:Static resx:AppResources.EditProfile}"
+             Style="{StaticResource NavigationPageStyle}"
+             xmlns:enums="clr-namespace:fitness_app.Enums"
+             xmlns:local="clr-namespace:fitness_app.ViewModels"
+             xmlns:constant="clr-namespace:fitness_app.Constants"
+             x:DataType="local:EditViewModel"
+             xmlns:s="http://plugin.segmentedControl.maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             NavigationPage.HasNavigationBar="True">
+    <ScrollView>
+        <Grid RowSpacing="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <toolkit:AvatarView ImageSource="{Binding EditableUser.Photo}"
+                                    HeightRequest="120"
+                                    WidthRequest="120"
+                                    HorizontalOptions="Center">
+                    <toolkit:AvatarView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HandleEditImageCommand}"/>
+                    </toolkit:AvatarView.GestureRecognizers>
+                </toolkit:AvatarView>
+                
+                <Image Source="{x:Static constant:ImageNameConstants.CameraIcon}"
+                       HeightRequest="28"
+                       WidthRequest="36"
+                       HorizontalOptions="Center"
+                       InputTransparent="True"/>
+            </Grid>
+            
+            
+            <VerticalStackLayout Grid.Row="1"
+                                 Style="{StaticResource BodyContainerStyle}">
+                <Label Text="{x:Static resx:AppResources.FullNameLabel}"
+                       Style="{StaticResource EntryLabelStyle}"/>
+                <Entry 
+                       Keyboard="Text"
+                       Text="{Binding EditableUser.FullName, Mode=TwoWay}"
+                       Style="{StaticResource EntryStyle}" />
+                <Label Text="{x:Static resx:AppResources.Weight}"
+                       Style="{StaticResource EntryLabelStyle}"/>
+                <Grid ColumnDefinitions="*">
+                    <Entry 
+                        Keyboard="Numeric"
+                        Text="{Binding EditableUser.Weight, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"/>
+                       
+                    <s:SegmentedControl Style="{StaticResource StatsInputViewSegmentedControlStyle}"
+                                        HorizontalOptions="End"
+                                        x:Name="WeightUnitSegmentControl"
+                                        SelectedSegment="{Binding WeightUnitIndex}"
+                                        Margin="0,0,8,0">
+                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:WeightUnitEnum.KG}, Converter={StaticResource EnumToStringConverter}}"/>
+                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:WeightUnitEnum.LBS}, Converter={StaticResource EnumToStringConverter}}" />
+                        
+                        <s:SegmentedControl.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                            Command="{Binding SegmentedControlWeightChangedCommand}"
+                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference WeightUnitSegmentControl}}"/>
+                        </s:SegmentedControl.Behaviors>
+
+                    </s:SegmentedControl>
+                </Grid>
+                <Label Text="{x:Static resx:AppResources.Height}"
+                       Style="{StaticResource EntryLabelStyle}"/>
+                <Grid ColumnDefinitions="*">
+                    <Entry 
+                        Keyboard="Numeric"
+                        Text="{Binding EditableUser.Height, Mode=TwoWay}"
+                        Style="{StaticResource EntryStyle}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"/>
+                       
+                    <s:SegmentedControl Style="{StaticResource StatsInputViewSegmentedControlStyle}"
+                                        HorizontalOptions="End"
+                                        SelectedSegment="{Binding  HeightUnitIndex}"
+                                        Margin="0,0,8,0"
+                                        x:Name="HeightUnitSegmentControl">
+                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.FEET}, Converter={StaticResource EnumToStringConverter}}" />
+                        <s:SegmentedControlOption Text="{Binding Source={x:Static enums:HeightUnitEnum.CM}, Converter={StaticResource EnumToStringConverter}}" />
+
+                        <s:SegmentedControl.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="SelectedIndexChanged"
+                                                            Command="{Binding SegmentedControlHeightChangedCommand}"
+                                                            CommandParameter="{Binding SelectedSegment, Source={x:Reference HeightUnitSegmentControl}}"/>
+                        </s:SegmentedControl.Behaviors>
+                    </s:SegmentedControl>
+                </Grid>
+                <Label Text="{x:Static resx:AppResources.Age}"
+                       Style="{StaticResource EntryLabelStyle}"/>
+                <Entry 
+                    Keyboard="Numeric"
+                    Text="{Binding EditableUser.Age, Mode=TwoWay}"
+                    Style="{StaticResource EntryStyle}" />
+            </VerticalStackLayout>
+            <Button Grid.Row="2"
+                    Style="{StaticResource MainGreenButtonStyle}"
+                    Command="{Binding SaveUserCommand}"
+                    Text="SAVE"/>
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:fitness_app.Resources.Localization"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:pinview="clr-namespace:PINView.Maui;assembly=PINView.Maui"
+             x:Class="fitness_app.Views.Welcome.VerifyAccountPage"
+             Style="{StaticResource NavigationPageStyle}">
+    <Grid RowDefinitions="Auto,*" 
+          Style="{StaticResource MainContainerStyle}"
+          RowSpacing="100">
+        <StackLayout Grid.Row="0" 
+                     Style="{StaticResource TitleContainerStyle}">
+            <Label Text="{x:Static resx:AppResources.VerifyAccountTitle}"
+                   Style="{StaticResource TitleStyle}"/>
+            <StackLayout>
+                <Label Text="{x:Static resx:AppResources.VerifyAccountDescription1}"
+                       Style="{StaticResource TitleDescriptionStyle}"/>
+                <Label Style="{StaticResource TitleDescriptionStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static resx:AppResources.VerifyAccountDescription2}" />
+                            <Span Text="{Binding Email}" 
+                                  FontAttributes="Bold"
+                                  TextColor="{StaticResource OliveGreen}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+        
+        <StackLayout Grid.Row="1"
+                     Style="{StaticResource BodyContainerStyle}"
+                     Spacing="24">
+            <pinview:PINView
+                x:Name="PinBox"
+                Style="{StaticResource PinViewStyle}"
+                PINEntryCompletedCommand="{Binding PINEntryCompletedCommand}"
+                PINValue="{Binding OTP, Mode=TwoWay}">
+                <pinview:PINView.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        EventName="Loaded"
+                        Command="{Binding FocusPINViewCommand}"
+                        CommandParameter="{x:Reference PinBox}"/>
+                </pinview:PINView.Behaviors>
+            </pinview:PINView>
+            
+            <Button BackgroundColor="Transparent" 
+                    Text="{x:Static resx:AppResources.ResendButtonText}"
+                    Style="{StaticResource ResendButtonStyle}">
+            </Button>
+        </StackLayout>
+    </Grid>
+</ContentPage>
